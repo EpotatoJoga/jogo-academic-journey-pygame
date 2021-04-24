@@ -14,4 +14,4 @@ class Menu:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 self.change_scene = True
-                print(self.change_scene)
+                print("ENTER",self.change_scene)

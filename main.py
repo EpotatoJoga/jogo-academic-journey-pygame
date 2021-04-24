@@ -28,5 +28,5 @@ class Main:
             self.events()
             pygame.display.update()
 
-game = Main(1280, 960, "----- ACADEMIC JOURNEY -----")
+game = Main(1280, 960, "A C A D E M I C     J O U R N E Y")
 game.update()
