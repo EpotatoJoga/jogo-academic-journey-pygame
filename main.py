@@ -1,5 +1,6 @@
 import pygame
 from menu import Menu
+from game import Game
 
 class Main:
 
@@ -7,14 +8,16 @@ class Main:
 
         self.window = pygame.display.set_mode([sizex, sizey])
         self.title = pygame.display.set_caption(title)
-
         self.menu = Menu()
-
+        self.game = Game()
         self.loop = True
 
     def draw(self):
         if not self.menu.change_scene:
             self.menu.draw(self.window)
+        elif not self.game.change_scene:
+            self.game.draw(self.window)
+            self.game.update()
 
     def events(self):
         for events in pygame.event.get():

@@ -6,7 +6,6 @@ class Obj:
 
         self.group = pygame.sprite.Group()
         self.sprite = pygame.sprite.Sprite(self.group)
-
         self.sprite.image = pygame.image.load(image)
         self.sprite.rect = self.sprite.image.get_rect()
         self.sprite.rect[0] = x
