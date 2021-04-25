@@ -11,11 +11,16 @@ class Obj:
         self.sprite.rect[0] = x
         self.sprite.rect[1] = y
         self.frame = 1
+        self.tick = 0
 
     def drawing(self,window):
         self.group.draw(window)
 
     def amin(self):
+        self.tick += 1
+        if self.tick >= 5:
+            self.tick = 0
+            self.frame += 1
         self.frame += 1
         if self.frame > 2:
             self.frame = 1

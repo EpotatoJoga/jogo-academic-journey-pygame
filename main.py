@@ -11,6 +11,7 @@ class Main:
         self.menu = Menu()
         self.game = Game()
         self.loop = True
+        self.fps = pygame.time.Clock()
 
     def draw(self):
         if not self.menu.change_scene:
@@ -27,6 +28,7 @@ class Main:
 
     def update(self):
         while self.loop:
+            self.fps.tick(30)
             self.draw()
             self.events()
             pygame.display.update()
