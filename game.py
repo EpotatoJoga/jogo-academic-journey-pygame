@@ -13,8 +13,8 @@ class Game:
         self.bg2.drawing(window)
 
     def update(self):
-        self.bg.sprite.rect[1] += 5
-        self.bg2.sprite.rect[1] += 5
+        self.bg.sprite.rect[1] += 1
+        self.bg2.sprite.rect[1] += 1
 
         if self.bg.sprite.rect[1] >= 960:
             self.bg.sprite.rect[1] = 0

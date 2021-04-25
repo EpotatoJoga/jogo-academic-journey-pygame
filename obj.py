@@ -14,5 +14,8 @@ class Obj:
     def drawing(self,window):
         self.group.draw(window)
 
+    def amin(self):
+        
+
 
 
