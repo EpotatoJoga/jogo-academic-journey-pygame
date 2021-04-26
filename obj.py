@@ -16,7 +16,7 @@ class Obj:
     def drawing(self,window):
         self.group.draw(window)
 
-    def amin(self):
+    def aminanave(self):
         self.tick += 1
         if self.tick >= 5:
             self.tick = 0
@@ -25,6 +25,16 @@ class Obj:
         if self.frame > 2:
             self.frame = 1
         self.sprite.image = pygame.image.load("assets/nave" + str(self.frame) + ".png")
+
+    def aminacomando(self):
+        self.tick += 1
+        if self.tick >= 5:
+            self.tick = 0
+            self.frame += 1
+        self.frame += 1
+        if self.frame > 2:
+            self.frame = 1
+        self.sprite.image = pygame.image.load("assets/comando" + str(self.frame) + ".png")
 
 
 
