@@ -26,6 +26,7 @@ class Main:
                 self.loop = False
             self.menu.events(events)
             self.game.nave.move_nave(events)
+            self.game.comando.move_comando(events)
 
     def update(self):
         while self.loop:

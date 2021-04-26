@@ -12,6 +12,12 @@ class Obj:
         self.sprite.rect[1] = y
         self.frame = 1
         self.tick = 0
+        self.moveup = False
+        self.movedown = False
+        self.moveleft = False
+        self.moveright = False
+        self.movecomandup = False
+        self.movecomanddown = False
 
     def draw(self,window):
         self.group.draw(window)
@@ -31,8 +37,74 @@ class Nave(Obj):
         super().__init__(image, x, y)
 
     def move_nave(self, event):
-        if event.type == pygame.MOUSEMOTION:
-            self.sprite.rect[0] = pygame.mouse.get_pos()[0]
-            self.sprite.rect[1] = pygame.mouse.get_pos()[1]
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                self.moveup = True
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_w:
+                self.moveup = False
+        if self.moveup:
+            self.sprite.rect[1]-=15
+        else:
+            self.sprite.rect[1]+=0
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_s:
+                self.movedown = True
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_s:
+                self.movedown = False
+        if self.movedown:
+            self.sprite.rect[1]+=15
+        else:
+            self.sprite.rect[1]+=0
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_a:
+                self.moveleft = True
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_a:
+                self.moveleft = False
+        if self.moveleft:
+            self.sprite.rect[0]-=15
+        else:
+            self.sprite.rect[0]+=0
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_d:
+                self.moveright = True
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_d:
+                self.moveright = False
+        if self.moveright:
+            self.sprite.rect[0]+=15
+        else:
+            self.sprite.rect[0]+=0
+
+class Comando(Obj):
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
+
+    def move_comando(self,event):
+        if event.type == pygame.KEYDOWN:
+           if event.key == pygame.K_KP4:
+               self.movecomandup = True
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_KP4:
+                self.movecomandup = False
+        if self.movecomandup:
+            self.sprite.rect[1]-=5
+        else:
+            self.sprite.rect[1]-=0
+
+        if event.type == pygame.KEYDOWN:
+           if event.key == pygame.K_KP1:
+               self.movecomanddown = True
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_KP1:
+                self.movecomanddown = False
+        if self.movecomanddown:
+            self.sprite.rect[1]+=5
+        else:
+            self.sprite.rect[1]+=0
 
