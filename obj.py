@@ -13,29 +13,26 @@ class Obj:
         self.frame = 1
         self.tick = 0
 
-    def drawing(self,window):
+    def draw(self,window):
         self.group.draw(window)
 
-    def aminanave(self):
+    def amin(self, image, tick, frames):
         self.tick += 1
-        if self.tick >= 5:
+        if self.tick == tick:
             self.tick = 0
             self.frame += 1
-        self.frame += 1
-        if self.frame > 2:
+        if self.frame > frames:
             self.frame = 1
-        self.sprite.image = pygame.image.load("assets/nave" + str(self.frame) + ".png")
+        self.sprite.image = pygame.image.load("assets/" + image + str(self.frame) + ".png")
 
-    def aminacomando(self):
-        self.tick += 1
-        if self.tick >= 5:
-            self.tick = 0
-            self.frame += 1
-        self.frame += 1
-        if self.frame > 2:
-            self.frame = 1
-        self.sprite.image = pygame.image.load("assets/comando" + str(self.frame) + ".png")
+class Nave(Obj):
 
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
 
+    def move_nave(self, event):
+        if event.type == pygame.MOUSEMOTION:
+            self.sprite.rect[0] = pygame.mouse.get_pos()[0]
+            self.sprite.rect[1] = pygame.mouse.get_pos()[1]
 
 

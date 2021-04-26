@@ -25,6 +25,7 @@ class Main:
             if events.type == pygame.QUIT:
                 self.loop = False
             self.menu.events(events)
+            self.game.nave.move_nave(events)
 
     def update(self):
         while self.loop:
