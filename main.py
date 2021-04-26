@@ -26,12 +26,11 @@ class Main:
                 self.loop = False
             self.menu.events(events)
             self.game.nave.move_nave(events)
-            self.game.dial1.muddialo(events)
-
+            self.game.dial(events)
 
     def update(self):
         while self.loop:
-            self.fps.tick(30)
+            self.fps.tick(60)
             self.draw()
             self.events()
             pygame.display.update()

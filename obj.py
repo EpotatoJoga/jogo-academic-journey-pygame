@@ -16,7 +16,6 @@ class Obj:
         self.movedown = False
         self.moveleft = False
         self.moveright = False
-        self.dialogo = False
 
     def draw(self,window):
         self.group.draw(window)
@@ -79,20 +78,3 @@ class Nave(Obj):
             self.sprite.rect[0]+=15
         else:
             self.sprite.rect[0]+=0
-
-class Dialogo(Obj):
-    def __init__(self, image, x, y):
-        super().__init__(image, x, y)
-
-    def muddialo(self,event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RETURN:
-                self.dialogo = True
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_RETURN:
-                self.dialogo = False
-        if self.dialogo:
-            self.sprite.rect[0] -= 200
-        else:
-            self.sprite.rect[0] -= 0
-
