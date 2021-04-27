@@ -34,6 +34,8 @@ class Nave(Obj):
     def __init__(self, image, x, y):
         super().__init__(image, x, y)
 
+        self.qarmadura = 5
+
     def move_nave(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
@@ -78,3 +80,10 @@ class Nave(Obj):
             self.sprite.rect[0]+=15
         else:
             self.sprite.rect[0]+=0
+
+    def colisaoplanetas(self, group, name):
+        name = name
+        colisaop = pygame.sprite.spritecollide(self.sprite, group, True)
+        if name == "planetar" and colisaop:
+            self.qarmadura -= 1
+            print("PR")
