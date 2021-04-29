@@ -10,8 +10,10 @@ class Jogo:
         self.nave = Nave("arquivos/nave1.png",630,750)
         self.comando = Objetos("arquivos/comando1.png", 40, 960)
         self.comandoo = Objetos("arquivos/comandoo1.png", 40, 960)
+        self.comandooo = Objetos("arquivos/comandooo1.png", 40, 900)
         self.dialogo1 = Objetos("arquivos/dialogo1.png", 330, 120)
         self.dialogo2 = Objetos("arquivos/dialogo4.png", 330, 120)
+        self.dialogo3 = Objetos("arquivos/dialogo6.png", 330,120)
         self.armadura5 = Objetos("arquivos/armadura5.png", 10, 10)
         self.armadura4 = Objetos("arquivos/armadura4.png", 10, 10)
         self.armadura3 = Objetos("arquivos/armadura3.png", 10, 10)
@@ -33,16 +35,17 @@ class Jogo:
         self.resiliencia5 = Objetos("arquivos/resili5.png",824,55)
         self.condecoracoes = Objetos("arquivos/condecoracoes.png", 1010, 755)
         self.condecoracao1 = Objetos("arquivos/condecoracao1.png", 1010, 790)
+        self.condecoracao2 = Objetos("arquivos/condecoracao2.png", 1100, 790)
+        self.destreza0 = Objetos("arquivos/destreza0.png",823,101)
         self.gggg = Objetos("arquivos/gggg1.png",1000,-230)
         self.ggg = Objetos("arquivos/ggg1.png", 700, -180)
         self.gg = Objetos("arquivos/gg1.png", 400, -130)
         self.g = Objetos("arquivos/g1.png", 100, -100)
         self.r = Objetos("arquivos/r.png", 600, -50)
-        #self.condecoracao2 = Objetos("arquivos/condecoracao2.png", 1100, 790)
-        #self.condecoracao3 = Objetos("arquivos/condecoracao3.png", 1190, 790)
         self.boleana_dialogo = False
         self.mudar_cena = False
         self.contagem_resili = 0
+        self.contagem_destre = 0
         self.contagem_dialogo1 = 1
         self.contagem_paliados = 1
         self.contagem_pinimigos = 1
@@ -60,6 +63,8 @@ class Jogo:
         self.comando.draw(tela)
         if self.nave.contagem_discernimento == 5 and self.contagem_paliados == 6:
             self.comandoo.draw(tela)
+        if self.nave.contagem_resiliencia == 5 and self.contagem_gggg == 6:
+            self.comandooo.draw(tela)
         self.armadura5.draw(tela)
         self.armadura4.draw(tela)
         self.armadura3.draw(tela)
@@ -71,7 +76,6 @@ class Jogo:
             self.planetaaliado.draw(tela)
         if self.contagem_dialogo1 == 3:
             self.discernimento0.draw(tela)
-
         if self.nave.contagem_discernimento == 1:
             self.discernimento1.draw(tela)
         if self.nave.contagem_discernimento == 2:
@@ -96,22 +100,30 @@ class Jogo:
             self.dialogo1.draw(tela)
         if self.comandoo.personagens.rect[1] == 370:
             self.dialogo2.draw(tela)
+        if self.comandooo.personagens.rect[1] == 370:
+            self.dialogo3.draw(tela)
         if self.contagem_resili == 1:
             self.condecoracoes.draw(tela)
             self.condecoracao1.draw(tela)
             self.resiliencia0.draw(tela)
+        if self.contagem_destre == 1:
+            self.condecoracao2.draw(tela)
+            self.destreza0.draw(tela)
         if self.inicio_asteroides == 1:
             self.gggg.draw(tela)
             self.ggg.draw(tela)
             self.gg.draw(tela)
             self.g.draw(tela)
             self.r.draw(tela)
+        if self.nave.contagem_resiliencia == 6:
+            self.comandooo.draw(tela)
 
     def atualizacoes(self):
         self.movimento_fundo()
         self.nave.animacoes("nave", 2, 2)
         self.comando.animacoes("comando", 2, 2)
-        self.comandoo.animacoes("comando",2,2)
+        self.comandoo.animacoes("comandoo",2,2)
+        self.comandooo.animacoes("comandooo",2,2)
         self.planetas_inimigos()
         self.planetas_aliados()
         self.nave.colisao_planetas(self.planetainimigo.group, "planetainimigos")
@@ -126,6 +138,7 @@ class Jogo:
         self.quantidade_resiliencia()
         self.movimento_primeira()
         self.movimento_segunda()
+        self.movimento_terceira()
         self.asteroides()
 
     def movimento_primeira(self):
@@ -134,9 +147,9 @@ class Jogo:
             if self.comando.personagens.rect[1] <= 370:
                 self.comando.personagens.rect[1] = 370
                 self.nave.contagem_enter += 1
-                #pygame.mixer.init()
-                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao1.mpeg")
-                #self.som_dialogo.play()
+                pygame.mixer.init()
+                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao1.mpeg")
+                self.som_dialogo.play()
         if self.contagem_dialogo1 == 3:
             self.comando.personagens.rect[1] += 6
             if self.comando.personagens.rect[1] >= 960:
@@ -158,6 +171,19 @@ class Jogo:
             if self.comandoo.personagens.rect[1] >= 960:
                 self.comandoo.personagens.rect[1] = 960
                 self.comandoo.personagens.kill()
+
+    def movimento_terceira(self):
+        if self.nave.contagem_resiliencia == 5 and self.contagem_gggg == 6 and self.contagem_dialogo1 == 5:
+            self.comandooo.personagens.rect[1] -= 3
+            if self.comandooo.personagens.rect[1] <= 370:
+                self.comandooo.personagens.rect[1] = 370
+                self.contagem_destre += 1
+                self.contagem_dialogo1 += 1
+        if self.contagem_dialogo1 == 7:
+            self.comandooo.personagens.rect[1] += 6
+            if self.comandooo.personagens.rect[1] >= 960:
+                self.comandooo.personagens.rect[1] = 960
+                self.comandooo.personagens.kill()
 
     def movimento_fundo(self):
         self.fundo1.personagens.rect[1] += 4
@@ -214,10 +240,10 @@ class Jogo:
             self.dialogo1.personagens.kill()
             self.contagem_dialogo1 +=1
             self.dialogo1 = Objetos("arquivos/dialogo" + str(self.contagem_dialogo1) + ".png", 330, 120)
-            #if self.contagem_dialogo1 <= 2:
-                #pygame.mixer.init()
-                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao2.mpeg")
-                #self.som_dialogo.play()
+            if self.contagem_dialogo1 <= 2:
+                pygame.mixer.init()
+                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao2.mpeg")
+                self.som_dialogo.play()
             print("Nº dialogo:", self.contagem_dialogo1)
         if self.contagem_dialogo1 == 5:
             self.dialogo2.personagens.kill()
@@ -248,28 +274,28 @@ class Jogo:
             self.gg.personagens.rect[1] += 3
             self.g.personagens.rect[1] += 3
             self.r.personagens.rect[1] += 3
-        if self.gggg.personagens.rect[1] >= 960:
+        if self.gggg.personagens.rect[1] >= 960 and self.contagem_gggg <= 5:
             self.gggg.personagens.kill()
             self.contagem_gggg += 1
             if self.contagem_gggg <= 5:
                 self.gggg = Objetos("arquivos/gggg" + str(self.contagem_gggg) + ".png", random.randrange(50, 630), -230)
-        if self.ggg.personagens.rect[1] >= 960:
+        if self.ggg.personagens.rect[1] >= 960 and self.contagem_ggg <= 5:
             self.ggg.personagens.kill()
             self.contagem_ggg += 1
             if self.contagem_ggg <= 5:
                 self.ggg = Objetos("arquivos/ggg" + str(self.contagem_ggg) + ".png", random.randrange(50, 630), -180)
-        if self.gg.personagens.rect[1] >= 960:
+        if self.gg.personagens.rect[1] >= 960 and self.contagem_gg <= 5:
             self.gg.personagens.kill()
             self.contagem_gg += 1
             if self.contagem_gg <= 5:
                 self.gg = Objetos("arquivos/gg" + str(self.contagem_gg) + ".png", random.randrange(50, 630), -130)
-        if self.g.personagens.rect[1] >= 960:
+        if self.g.personagens.rect[1] >= 960 and self.contagem_g <= 5:
             self.g.personagens.kill()
             self.contagem_g += 1
             if self.contagem_g <= 5:
                 self.g = Objetos("arquivos/g" + str(self.contagem_g) + ".png", random.randrange(50, 630), -100)
-        if self.r.personagens.rect[1] >= 960:
+        if self.r.personagens.rect[1] >= 960 and self.contagem_r <= 5:
             self.r.personagens.kill()
             self.contagem_r += 1
-            if self.contagem_r <= 6:
+            if self.contagem_r <= 5:
                 self.r = Objetos("arquivos/r.png", random.randrange(50, 630), -50)

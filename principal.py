@@ -8,7 +8,7 @@ class Principal:
         pygame.init()
         pygame.mixer.init()
         pygame.mixer.music.load("arquivos/tema.ogg")
-        pygame.mixer.music.set_volume(0.1)
+        pygame.mixer.music.set_volume(0.8)
         pygame.mixer.music.play(-1)
         self.tela = pygame.display.set_mode([sizex, sizey])
         self.titulo = pygame.display.set_caption(titulo)
