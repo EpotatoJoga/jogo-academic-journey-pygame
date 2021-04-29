@@ -35,6 +35,7 @@ class Nave(Obj):
         super().__init__(image, x, y)
 
         self.qarmadura = 5
+        self.discernimento = 0
 
     def move_nave(self, event):
         if event.type == pygame.KEYDOWN:
@@ -86,4 +87,11 @@ class Nave(Obj):
         colisaop = pygame.sprite.spritecollide(self.sprite, group, True)
         if name == "planetar" and colisaop:
             self.qarmadura -= 1
-            print("PR")
+            pygame.mixer.init()
+            self.sound_explosao = pygame.mixer.Sound("assets/explosao.flac")
+            self.sound_explosao.play()
+        if name == "planetab" and colisaop:
+            self.discernimento += 1
+            pygame.mixer.init()
+            self.sound_explosao = pygame.mixer.Sound("assets/ponto.wav")
+            self.sound_explosao.play()

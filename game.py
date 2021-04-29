@@ -16,8 +16,15 @@ class Game:
         self.armadura3 = Obj("assets/armadura3.png", 10, 10)
         self.armadura2 = Obj("assets/armadura2.png", 10, 10)
         self.armadura1 = Obj("assets/armadura1.png", 10, 10)
-        self.planetar = Obj("assets/pr1.png",910,-440)
-        self.planetab = Obj("assets/pb1.png",10,-320)
+        self.disc0 = Obj("assets/disc0.png",820,10)
+        self.disc1 = Obj("assets/disc1.png", 820, 10)
+        self.disc2 = Obj("assets/disc2.png", 820, 10)
+        self.disc3 = Obj("assets/disc3.png", 820, 10)
+        self.disc4 = Obj("assets/disc4.png", 820, 10)
+        self.disc5 = Obj("assets/disc5.png", 820, 10)
+        self.planetar = Obj("assets/pr1.png",910,-320)
+        self.planetab = Obj("assets/pb1.png",10,-600)
+        self.condecoracao1 = Obj("assets/condecoracao1.png",640,400)
         self.change_scene = False
         self.dialog = False
         self.comand = False
@@ -39,6 +46,18 @@ class Game:
         self.armadura1.draw(window)
         self.planetar.draw(window)
         self.planetab.draw(window)
+        self.disc0.draw(window)
+        if self.nave.discernimento == 1:
+            self.disc1.draw(window)
+        if self.nave.discernimento == 2:
+            self.disc2.draw(window)
+        if self.nave.discernimento == 3:
+            self.disc3.draw(window)
+        if self.nave.discernimento == 4:
+            self.disc4.draw(window)
+        if self.nave.discernimento == 5:
+            self.disc5.draw(window)
+        self.condecoracao1.draw(window)
 
     def update(self):
         self.move_bg()
@@ -47,7 +66,9 @@ class Game:
         self.planetasruins()
         self.planetasbons()
         self.nave.colisaoplanetas(self.planetar.group, "planetar")
+        self.nave.colisaoplanetas(self.planetab.group, "planetab")
         self.quarmadura()
+        self.qudisernimento()
 
     def move_bg(self):
         self.bg.sprite.rect[1] += 4
@@ -68,6 +89,18 @@ class Game:
             self.armadura2.sprite.kill()
         if self.nave.qarmadura == 0:
             self.change_scene = True
+
+    def qudisernimento(self):
+        if self.nave.discernimento == 1:
+            self.disc0.sprite.kill()
+        if self.nave.discernimento == 2:
+            self.disc1.sprite.kill()
+        if self.nave.discernimento == 3:
+            self.disc2.sprite.kill()
+        if self.nave.discernimento == 4:
+            self.disc3.sprite.kill()
+        if self.nave.discernimento == 5:
+            self.disc4.sprite.kill()
 
     def move_comando(self,event):
         if event.type == pygame.KEYDOWN:
@@ -104,9 +137,10 @@ class Game:
             self.dialogo.sprite.kill()
             self.dn +=1
             self.dialogo = Obj("assets/dialogo" + str(self.dn) + ".png", 330, 120)
-            #if self.n <= 2:
+            print(self.dn)
+            #if self.dn <= 2:
                 #pygame.mixer.init()
-                #self.sound_dialogo = pygame.mixer.Sound("assets/g" + str(self.n) + ".mpeg")
+                #self.sound_dialogo = pygame.mixer.Sound("assets/g" + str(self.dn) + ".mpeg")
                 #self.sound_dialogo.play()
         else:
             pass
@@ -114,19 +148,19 @@ class Game:
     def planetasruins(self):
         if self.dn == 3:
             self.planetar.sprite.rect[1] += 7
-        if self.planetar.sprite.rect[1] >= 660:
-            if self.prn <= 4:
-                self.planetar.sprite.kill()
-                self.prn += 1
-                self.planetar = Obj("assets/pr" + str(self.prn) + ".png", random.randrange(50,630), -440)
+        if self.planetar.sprite.rect[1] >= 960:
+            self.planetar.sprite.kill()
+            self.prn += 1
+            if self.prn <= 5:
+                self.planetar = Obj("assets/pr" + str(self.prn) + ".png", random.randrange(50,630), -320)
 
     def planetasbons(self):
         if self.dn == 3:
             self.planetab.sprite.rect[1] += 7
-        if self.planetab.sprite.rect[1] >= 660:
+        if self.planetab.sprite.rect[1] >= 960:
+            self.planetab.sprite.kill()
+            self.pbn += 1
             if self.pbn <= 5:
-                self.planetab.sprite.kill()
-                self.pbn += 1
-                self.planetab = Obj("assets/pb" + str(self.prn) + ".png", random.randrange(50,630), -320)
+                self.planetab = Obj("assets/pb" + str(self.pbn) + ".png", random.randrange(50,630), -440)
 
 

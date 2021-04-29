@@ -6,9 +6,10 @@ class Main:
 
     def __init__(self, sizex, sizey, title):
         pygame.init()
-        #pygame.mixer.init()
-        #pygame.mixer.music.load("assets/tema.ogg")
-        #pygame.mixer.music.play(-1)
+        pygame.mixer.init()
+        pygame.mixer.music.load("assets/tema.ogg")
+        pygame.mixer.music.set_volume(0.2)
+        pygame.mixer.music.play(-1)
         self.window = pygame.display.set_mode([sizex, sizey])
         self.title = pygame.display.set_caption(title)
         self.menu = Menu()
@@ -16,7 +17,7 @@ class Main:
         self.loop = True
         self.fps = pygame.time.Clock()
 
-    def events(self):
+    def eventos(self):
         for events in pygame.event.get():
             if events.type == pygame.QUIT:
                 self.loop = False
@@ -41,7 +42,7 @@ class Main:
         while self.loop:
             self.fps.tick(30)
             self.draw()
-            self.events()
+            self.eventos()
             pygame.display.update()
 
 game = Main(1280, 960, "A C A D E M I C     J O U R N E Y")
