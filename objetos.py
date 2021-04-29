@@ -39,8 +39,6 @@ class Nave(Objetos):
         self.contagem_enter = 0
 
     def movimentacao_nave(self, evento):
-
-
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_w:
                 self.movimento_cima = True

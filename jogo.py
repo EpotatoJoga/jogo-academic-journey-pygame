@@ -25,6 +25,12 @@ class Jogo:
         self.discernimento5 = Objetos("arquivos/disc5.png", 820, 10)
         self.planetainimigo = Objetos("arquivos/pr1.png", 910, -320)
         self.planetaaliado = Objetos("arquivos/pb1.png", 10, -600)
+        self.resiliencia0 = Objetos("arquivos/resili0.png", 824, 55)
+        self.resiliencia1 = Objetos("arquivos/resili1.png", 824, 55)
+        self.resiliencia2 = Objetos("arquivos/resili2.png", 824, 55)
+        self.resiliencia3 = Objetos("arquivos/resili3.png", 824, 55)
+        self.resiliencia4 = Objetos("arquivos/resili4.png", 824, 55)
+        self.resiliencia5 = Objetos("arquivos/resili5.png",824,55)
         self.condecoracoes = Objetos("arquivos/condecoracoes.png", 1010, 755)
         self.condecoracao1 = Objetos("arquivos/condecoracao1.png", 1010, 790)
         #self.condecoracao2 = Objetos("arquivos/condecoracao2.png", 1100, 790)
@@ -34,7 +40,6 @@ class Jogo:
         self.contagem_dialogo1 = 1
         self.contagem_paliados = 1
         self.contagem_pinimigos = 1
-        self.primeira = False
         self.movimento_primeira()
 
     def draw(self, tela):
@@ -71,6 +76,7 @@ class Jogo:
             self.dialogo2.draw(tela)
             self.condecoracoes.draw(tela)
             self.condecoracao1.draw(tela)
+            self.resiliencia0.draw(tela)
 
     def atualizacoes(self):
         self.movimento_fundo()
@@ -102,10 +108,19 @@ class Jogo:
                 self.comando.personagens.kill()
 
     def movimento_segunda(self):
-        if self.nave.contagem_discernimento == 5 and self.contagem_paliados == 6:
+        if self.nave.contagem_discernimento == 5 and self.contagem_dialogo1 == 3:
             self.comandoo.personagens.rect[1] -= 3
             if self.comandoo.personagens.rect[1] <= 370:
                 self.comandoo.personagens.rect[1] = 370
+                self.contagem_dialogo1 += 1
+                pygame.mixer.init()
+                self.som_dialogo = pygame.mixer.Sound("arquivos/g3.mpeg")
+                self.som_dialogo.play()
+            if self.contagem_dialogo1 == 5:
+                self.comandoo.personagens.rect[1] += 6
+                if self.comandoo.personagens.rect[1] >= 960:
+                    self.comandoo.personagens.rect[1] = 960
+                    self.comandoo.personagens.kill()
 
     def movimento_fundo(self):
         self.fundo1.personagens.rect[1] += 4
@@ -150,13 +165,14 @@ class Jogo:
             self.dialogo1.personagens.kill()
             self.contagem_dialogo1 +=1
             self.dialogo1 = Objetos("arquivos/dialogo" + str(self.contagem_dialogo1) + ".png", 330, 120)
-            print("Nº dialogo:", self.contagem_dialogo1)
-            #if self.contagem_dialogo <= 2:
+            #if self.contagem_dialogo1 <= 2:
                 #pygame.mixer.init()
-                #self.som_dialogo = pygame.mixer.Sound("arquivos/g" + str(self.contagem_dialogo) + ".mpeg")
+                #self.som_dialogo = pygame.mixer.Sound("arquivos/g2.mpeg")
                 #self.som_dialogo.play()
-        else:
-            pass
+            print("Nº dialogo:", self.contagem_dialogo1)
+        if self.contagem_dialogo1 == 5:
+            self.dialogo2.personagens.kill()
+
 
     def planetas_inimigos(self):
         if self.comando.personagens.rect[1] == 960 and self.contagem_pinimigos <= 5:
