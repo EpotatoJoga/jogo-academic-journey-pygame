@@ -1,16 +1,16 @@
 import pygame
-from obj import Obj
+from objetos import Objetos, Nave
 
 class Menu:
 
     def __init__(self):
-        self.bg = Obj("assets/menu.png",0,0)
-        self.change_scene = False
+        self.menu = Objetos("arquivos/menu.png", 0, 0)
+        self.mudar_cena = False
 
-    def draw(self, window):
-        self.bg.group.draw(window)
+    def draw(self, tela):
+        self.menu.group.draw(tela)
 
-    def events(self,event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RETURN:
-                self.change_scene = True
+    def eventos(self, evento):
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_RETURN:
+                self.mudar_cena = True
