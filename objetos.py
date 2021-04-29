@@ -39,17 +39,7 @@ class Nave(Objetos):
         self.contagem_enter = 0
 
     def movimentacao_nave(self, evento):
-        if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_RETURN:
-                self.teclaenter = True
-        if evento.type == pygame.KEYUP:
-            if evento.key == pygame.K_RETURN:
-                self.teclaenter = False
-        if self.teclaenter:
-            self.contagem_enter +=1
-            print("ENTER",self.contagem_enter)
-        else:
-            pass
+
 
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_w:
@@ -95,16 +85,28 @@ class Nave(Objetos):
         else:
             self.personagens.rect[0]+=0
 
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_RETURN:
+                self.teclaenter = True
+        if evento.type == pygame.KEYUP:
+            if evento.key == pygame.K_RETURN:
+                self.teclaenter = False
+        if self.teclaenter:
+            self.contagem_enter += 1
+            print("ENTER",self.contagem_enter)
+        else:
+            pass
+
     def colisao_planetas(self, group, nome):
         nome = nome
         colisao_planetas = pygame.sprite.spritecollide(self.personagens, group, True)
         if nome == "planetainimigos" and colisao_planetas:
             self.contagem_armadura -= 1
             pygame.mixer.init()
-            self.som_explosao = pygame.mixer.Sound("arquivos/explosao.flac")
-            self.som_explosao.play()
+            self.som = pygame.mixer.Sound("arquivos/explosao.flac")
+            self.som.play()
         if nome == "planetaaliados" and colisao_planetas:
             self.contagem_discernimento += 1
             pygame.mixer.init()
-            self.som_explosao = pygame.mixer.Sound("arquivos/ponto.wav")
-            self.som_explosao.play()
+            self.som = pygame.mixer.Sound("arquivos/ponto.wav")
+            self.som.play()

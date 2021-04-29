@@ -17,7 +17,6 @@ class Principal:
         self.jogo = Jogo()
         self.loop = True
 
-
     def eventos(self):
         for eventos in pygame.event.get():
             if eventos.type == pygame.QUIT:
@@ -27,8 +26,7 @@ class Principal:
             elif not self.jogo.mudar_cena:
                 self.jogo.nave.movimentacao_nave(eventos)
             self.jogo.nave.movimentacao_nave(eventos)
-            self.jogo.movimento_dialogo(eventos)
-            #self.jogo.movimento_comando(eventos)
+            self.jogo.dialogo_primeira(eventos)
 
     def draw(self):
         self.tela.fill([0, 0, 0])
