@@ -26,7 +26,7 @@ class Principal:
             elif not self.jogo.mudar_cena:
                 self.jogo.nave.movimentacao_nave(eventos)
             self.jogo.nave.movimentacao_nave(eventos)
-            self.jogo.dialogo_primeira(eventos)
+            self.jogo.dialogo(eventos)
 
     def draw(self):
         self.tela.fill([0, 0, 0])
@@ -38,7 +38,7 @@ class Principal:
 
     def atualizacoes(self):
         while self.loop:
-            self.fps.tick(30)
+            self.fps.tick(60)
             self.draw()
             self.eventos()
             pygame.display.update()

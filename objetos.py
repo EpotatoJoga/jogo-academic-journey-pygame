@@ -36,6 +36,7 @@ class Nave(Objetos):
         super().__init__(image, x, y)
         self.contagem_armadura = 5
         self.contagem_discernimento = 0
+        self.contagem_resiliencia = 0
         self.contagem_enter = 0
 
     def movimentacao_nave(self, evento):
@@ -105,6 +106,20 @@ class Nave(Objetos):
             self.som.play()
         if nome == "planetaaliados" and colisao_planetas:
             self.contagem_discernimento += 1
+            pygame.mixer.init()
+            self.som = pygame.mixer.Sound("arquivos/ponto.wav")
+            self.som.play()
+
+    def colisao_asteroides(self, group, name):
+        name = name
+        colisao_asteroides = pygame.sprite.spritecollide(self.personagens, group, True)
+        if (name == "gggg" or name == "ggg" or name == "gg" or name == "g") and colisao_asteroides:
+            self.contagem_armadura -= 1
+            pygame.mixer.init()
+            self.som = pygame.mixer.Sound("arquivos/explosao.flac")
+            self.som.play()
+        if name == "r" and colisao_asteroides:
+            self.contagem_resiliencia += 1
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/ponto.wav")
             self.som.play()
