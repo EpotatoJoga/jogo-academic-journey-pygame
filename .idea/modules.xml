@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/JogoBeeHoney.iml" filepath="$PROJECT_DIR$/.idea/JogoBeeHoney.iml" />
       <module fileurl="file://$USER_HOME$/PycharmProjects/JogoFutebolPong/.idea/JogoFutebolPong.iml" filepath="$USER_HOME$/PycharmProjects/JogoFutebolPong/.idea/JogoFutebolPong.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Python-Iniciante/.idea/Python-Iniciante.iml" filepath="$PROJECT_DIR$/../Python-Iniciante/.idea/Python-Iniciante.iml" />
     </modules>
   </component>
 </project>

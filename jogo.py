@@ -1,5 +1,5 @@
 import pygame
-from objetos import Objetos, Nave
+from objetos import Objetos, Nave, Tiro
 import random
 
 class Jogo:
@@ -42,8 +42,10 @@ class Jogo:
         self.gg = Objetos("arquivos/gg1.png", 400, -130)
         self.g = Objetos("arquivos/g1.png", 100, -100)
         self.r = Objetos("arquivos/r.png", 600, -50)
+        self.tiro = Tiro("arquivos/x1.png", -10,-10)
         self.boleana_dialogo = False
         self.mudar_cena = False
+        self.foi = False
         self.contagem_resili = 0
         self.contagem_destre = 0
         self.contagem_dialogo1 = 1
@@ -59,6 +61,7 @@ class Jogo:
     def draw(self, tela):
         self.fundo1.draw(tela)
         self.fundo2.draw(tela)
+        self.tiro.draw(tela)
         self.nave.draw(tela)
         self.comando.draw(tela)
         if self.nave.contagem_discernimento == 5 and self.contagem_paliados == 6:
@@ -118,12 +121,14 @@ class Jogo:
         if self.nave.contagem_resiliencia == 6:
             self.comandooo.draw(tela)
 
+
     def atualizacoes(self):
         self.movimento_fundo()
         self.nave.animacoes("nave", 2, 2)
         self.comando.animacoes("comando", 2, 2)
         self.comandoo.animacoes("comandoo",2,2)
         self.comandooo.animacoes("comandooo",2,2)
+        self.tiro.animacoes("x",2,2)
         self.planetas_inimigos()
         self.planetas_aliados()
         self.nave.colisao_planetas(self.planetainimigo.group, "planetainimigos")
@@ -133,6 +138,12 @@ class Jogo:
         self.nave.colisao_asteroides(self.gg.group, "gg")
         self.nave.colisao_asteroides(self.g.group, "g")
         self.nave.colisao_asteroides(self.r.group, "r")
+        self.tiro.colisao_tiro(self.planetainimigo.group, "planetainimigos")
+        self.tiro.colisao_tiro(self.planetaaliado.group, "planetaaliados")
+        self.tiro.colisao_tiroo(self.gggg.group, "gggg")
+        self.tiro.colisao_tiroo(self.ggg.group, "ggg")
+        self.tiro.colisao_tiroo(self.gg.group, "gg")
+        self.tiro.colisao_tiroo(self.g.group, "g")
         self.quantidade_armadura()
         self.quantidade_disernimento()
         self.quantidade_resiliencia()
@@ -140,6 +151,7 @@ class Jogo:
         self.movimento_segunda()
         self.movimento_terceira()
         self.asteroides()
+        self.disparado()
 
     def movimento_primeira(self):
         if self.nave.contagem_enter == 1:
@@ -147,9 +159,9 @@ class Jogo:
             if self.comando.personagens.rect[1] <= 370:
                 self.comando.personagens.rect[1] = 370
                 self.nave.contagem_enter += 1
-                pygame.mixer.init()
-                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao1.mpeg")
-                self.som_dialogo.play()
+                #pygame.mixer.init()
+                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao1.mpeg")
+                #self.som_dialogo.play()
         if self.contagem_dialogo1 == 3:
             self.comando.personagens.rect[1] += 6
             if self.comando.personagens.rect[1] >= 960:
@@ -163,9 +175,9 @@ class Jogo:
                 self.comandoo.personagens.rect[1] = 370
                 self.contagem_resili += 1
                 self.contagem_dialogo1 += 1
-                pygame.mixer.init()
-                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao3.mpeg")
-                self.som_dialogo.play()
+                #pygame.mixer.init()
+                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao3.mpeg")
+                #self.som_dialogo.play()
         if self.contagem_dialogo1 == 5:
             self.comandoo.personagens.rect[1] += 6
             if self.comandoo.personagens.rect[1] >= 960:
@@ -240,10 +252,10 @@ class Jogo:
             self.dialogo1.personagens.kill()
             self.contagem_dialogo1 +=1
             self.dialogo1 = Objetos("arquivos/dialogo" + str(self.contagem_dialogo1) + ".png", 330, 120)
-            if self.contagem_dialogo1 <= 2:
-                pygame.mixer.init()
-                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao2.mpeg")
-                self.som_dialogo.play()
+            #if self.contagem_dialogo1 <= 2:
+                #pygame.mixer.init()
+                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao2.mpeg")
+                #self.som_dialogo.play()
             print("Nº dialogo:", self.contagem_dialogo1)
         if self.contagem_dialogo1 == 5:
             self.dialogo2.personagens.kill()
@@ -299,3 +311,19 @@ class Jogo:
             self.contagem_r += 1
             if self.contagem_r <= 5:
                 self.r = Objetos("arquivos/r.png", random.randrange(50, 630), -50)
+
+    def disparado(self):
+        if self.tiro.tiro:
+            self.tiro.personagens.rect[1] = (self.nave.personagens.rect[1] + 30)
+            self.tiro.personagens.rect[0] = (self.nave.personagens.rect[0] + 62)
+            self.foi = True
+        if self.foi:
+            if self.tiro.personagens.rect[1] >= -70:
+                self.tiro.personagens.rect[1] -= 15
+            if self.tiro.personagens.rect[1] == -70:
+                self.tiro.personagens.kill()
+                self.foi = False
+            if self.tiro.tiro:
+                self.tiro = Tiro("arquivos/x1.png", self.nave.personagens.rect[0] + 62, self.nave.personagens.rect[1] + 30)
+
+

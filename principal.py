@@ -8,7 +8,7 @@ class Principal:
         pygame.init()
         pygame.mixer.init()
         pygame.mixer.music.load("arquivos/tema.ogg")
-        pygame.mixer.music.set_volume(0.8)
+        pygame.mixer.music.set_volume(0.3)
         pygame.mixer.music.play(-1)
         self.tela = pygame.display.set_mode([sizex, sizey])
         self.titulo = pygame.display.set_caption(titulo)
@@ -27,6 +27,7 @@ class Principal:
                 self.jogo.nave.movimentacao_nave(eventos)
             self.jogo.nave.movimentacao_nave(eventos)
             self.jogo.dialogo(eventos)
+            self.jogo.tiro.disparo(eventos)
 
     def draw(self):
         self.tela.fill([0, 0, 0])

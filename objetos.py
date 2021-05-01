@@ -15,6 +15,7 @@ class Objetos:
         self.movimento_esquerda = False
         self.movimento_direita = False
         self.teclaenter = False
+        self.tiro = False
         self.quadros = 1
         self.marcacao = 0
 
@@ -47,7 +48,7 @@ class Nave(Objetos):
             if evento.key == pygame.K_w:
                 self.movimento_cima = False
         if self.movimento_cima:
-            self.personagens.rect[1]-=15
+            self.personagens.rect[1]-=10
         else:
             self.personagens.rect[1]+=0
 
@@ -58,7 +59,7 @@ class Nave(Objetos):
             if evento.key == pygame.K_s:
                 self.movimento_baixo = False
         if self.movimento_baixo:
-            self.personagens.rect[1]+=15
+            self.personagens.rect[1]+=10
         else:
             self.personagens.rect[1]+=0
 
@@ -69,7 +70,7 @@ class Nave(Objetos):
             if evento.key == pygame.K_a:
                 self.movimento_esquerda = False
         if self.movimento_esquerda:
-            self.personagens.rect[0]-=15
+            self.personagens.rect[0]-=10
         else:
             self.personagens.rect[0]+=0
 
@@ -80,7 +81,7 @@ class Nave(Objetos):
             if evento.key == pygame.K_d:
                 self.movimento_direita = False
         if self.movimento_direita:
-            self.personagens.rect[0]+=15
+            self.personagens.rect[0]+=10
         else:
             self.personagens.rect[0]+=0
 
@@ -92,7 +93,6 @@ class Nave(Objetos):
                 self.teclaenter = False
         if self.teclaenter:
             self.contagem_enter += 1
-            print("ENTER",self.contagem_enter)
         else:
             pass
 
@@ -123,3 +123,40 @@ class Nave(Objetos):
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/ponto.wav")
             self.som.play()
+
+class Tiro(Objetos):
+
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
+        self.ok = False
+
+    def disparo(self, evento):
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_e:
+                self.tiro = True
+                pygame.mixer.init()
+                pygame.mixer.music.set_volume(0.2)
+                self.som_tiro = pygame.mixer.Sound("arquivos/tiro.ogg")
+                self.som_tiro.play()
+        if evento.type == pygame.KEYUP:
+            if evento.key == pygame.K_e:
+                self.tiro = False
+        if self.tiro:
+            print("Tiro",self.tiro)
+        else:
+            pass
+
+    def colisao_tiro(self, group, nomee):
+        nomee = nomee
+        colisao_tiro = pygame.sprite.spritecollide(self.personagens, group, False)
+        if nomee == "planetainimigos" and colisao_tiro:
+            self.personagens.kill()
+        if nomee == "planetaaliados" and colisao_tiro:
+            self.personagens.kill()
+
+    def colisao_tiroo(self, group, nomee):
+        nomee = nomee
+        colisao_tiroo = pygame.sprite.spritecollide(self.personagens, group, True)
+        if nomee == (nomee == "gggg" or nomee == "ggg" or nomee == "gg" or nomee == "g") and colisao_tiroo:
+            self.personagens.kill()
+
