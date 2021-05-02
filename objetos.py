@@ -157,6 +157,11 @@ class Tiro(Objetos):
     def colisao_tiroo(self, group, nomee):
         nomee = nomee
         colisao_tiroo = pygame.sprite.spritecollide(self.personagens, group, True)
-        if nomee == (nomee == "gggg" or nomee == "ggg" or nomee == "gg" or nomee == "g") and colisao_tiroo:
+        if nomee == "gggg" and colisao_tiroo:
             self.personagens.kill()
-
+        if nomee == "ggg" and colisao_tiroo:
+            self.personagens.kill()
+        if nomee == "gg" and colisao_tiroo:
+            self.personagens.kill()
+        if nomee == "g" and colisao_tiroo:
+            self.personagens.kill()

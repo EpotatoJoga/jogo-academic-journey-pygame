@@ -43,6 +43,9 @@ class Jogo:
         self.g = Objetos("arquivos/g1.png", 100, -100)
         self.r = Objetos("arquivos/r.png", 600, -50)
         self.tiro = Tiro("arquivos/x1.png", -10,-10)
+        self.aste1 = Objetos("arquivos/aste1.png",840,-50)
+        self.aste2 = Objetos("arquivos/aste2.png", 640, -120)
+        self.aste3 = Objetos("arquivos/aste3.png", 440, -190)
         self.boleana_dialogo = False
         self.mudar_cena = False
         self.foi = False
@@ -74,9 +77,12 @@ class Jogo:
         self.armadura2.draw(tela)
         self.armadura1.draw(tela)
         if self.contagem_dialogo1 == 3:
-            self.planetainimigo.draw(tela)
-        if self.contagem_dialogo1 == 3:
             self.planetaaliado.draw(tela)
+        if self.contagem_dialogo1 == 3:
+            self.planetainimigo.draw(tela)
+            self.aste1.draw(tela)
+            self.aste2.draw(tela)
+            self.aste3.draw(tela)
         if self.contagem_dialogo1 == 3:
             self.discernimento0.draw(tela)
         if self.nave.contagem_discernimento == 1:
@@ -120,7 +126,6 @@ class Jogo:
             self.r.draw(tela)
         if self.nave.contagem_resiliencia == 6:
             self.comandooo.draw(tela)
-
 
     def atualizacoes(self):
         self.movimento_fundo()
@@ -264,6 +269,20 @@ class Jogo:
     def planetas_inimigos(self):
         if self.comando.personagens.rect[1] == 960 and self.contagem_pinimigos <= 5:
             self.planetainimigo.personagens.rect[1] += 6
+            self.aste1.personagens.rect[1] += 7
+            self.aste2.personagens.rect[1] += 7
+        if self.aste1.personagens.rect[1] >= 960 and self.contagem_pinimigos <= 5:
+            self.aste1.personagens.kill()
+            if self.contagem_pinimigos <= 4:
+                self.aste1 = Objetos("arquivos/aste1.png", random.randrange(50, 630), -50)
+        if self.aste2.personagens.rect[1] >= 960 and self.contagem_pinimigos <= 5:
+            self.aste2.personagens.kill()
+            if self.contagem_pinimigos <= 4:
+                self.aste2 = Objetos("arquivos/aste2.png", random.randrange(50, 630), -120)
+        if self.aste3.personagens.rect[1] >= 960 and self.contagem_pinimigos <= 5:
+            self.aste3.personagens.kill()
+            if self.contagem_pinimigos <= 4:
+                self.aste3 = Objetos("arquivos/aste3.png", random.randrange(50, 630), -190)
         if self.planetainimigo.personagens.rect[1] >= 960 and self.contagem_pinimigos <= 5:
             self.planetainimigo.personagens.kill()
             self.contagem_pinimigos += 1
@@ -281,11 +300,11 @@ class Jogo:
 
     def asteroides(self):
         if self.inicio_asteroides == 1:
-            self.gggg.personagens.rect[1] += 3
-            self.ggg.personagens.rect[1] += 3
-            self.gg.personagens.rect[1] += 3
-            self.g.personagens.rect[1] += 3
-            self.r.personagens.rect[1] += 3
+            self.gggg.personagens.rect[1] += 4
+            self.ggg.personagens.rect[1] += 4
+            self.gg.personagens.rect[1] += 4
+            self.g.personagens.rect[1] += 4
+            self.r.personagens.rect[1] += 4
         if self.gggg.personagens.rect[1] >= 960 and self.contagem_gggg <= 5:
             self.gggg.personagens.kill()
             self.contagem_gggg += 1
