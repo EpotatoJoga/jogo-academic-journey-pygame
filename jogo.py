@@ -271,6 +271,7 @@ class Jogo:
             self.planetainimigo.personagens.rect[1] += 6
             self.aste1.personagens.rect[1] += 7
             self.aste2.personagens.rect[1] += 7
+            self.aste3.personagens.rect[1] += 7
         if self.aste1.personagens.rect[1] >= 960 and self.contagem_pinimigos <= 5:
             self.aste1.personagens.kill()
             if self.contagem_pinimigos <= 4:
