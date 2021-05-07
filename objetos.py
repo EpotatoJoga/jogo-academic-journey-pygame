@@ -109,6 +109,21 @@ class Nave(Objetos):
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/ponto.wav")
             self.som.play()
+        if nome == "aste1" and colisao_planetas:
+            self.contagem_armadura -= 1
+            pygame.mixer.init()
+            self.som = pygame.mixer.Sound("arquivos/explosao.flac")
+            self.som.play()
+        if nome == "aste2" and colisao_planetas:
+            self.contagem_armadura -= 1
+            pygame.mixer.init()
+            self.som = pygame.mixer.Sound("arquivos/explosao.flac")
+            self.som.play()
+        if nome == "aste3" and colisao_planetas:
+            self.contagem_armadura -= 1
+            pygame.mixer.init()
+            self.som = pygame.mixer.Sound("arquivos/explosao.flac")
+            self.som.play()
 
     def colisao_asteroides(self, group, name):
         name = name
