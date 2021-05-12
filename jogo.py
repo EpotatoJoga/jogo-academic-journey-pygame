@@ -36,7 +36,13 @@ class Jogo:
         self.condecoracoes = Conteudo("arquivos/condecoracoes.png", 1010, 755)
         self.condecoracao1 = Conteudo("arquivos/condecoracao1.png", 1010, 790)
         self.condecoracao2 = Conteudo("arquivos/condecoracao2.png", 1100, 790)
-        self.destreza0 = Conteudo("arquivos/destreza0.png", 823, 103)
+        self.condecoracao3 = Conteudo("arquivos/condecoracao3.png", 1100, 790)
+        self.destreza0 = Conteudo("arquivos/destreza0.png", 821, 104)
+        self.destreza1 = Conteudo("arquivos/destreza1.png", 821, 104)
+        self.destreza2 = Conteudo("arquivos/destreza2.png", 821, 104)
+        self.destreza3 = Conteudo("arquivos/destreza3.png", 821, 104)
+        self.destreza4 = Conteudo("arquivos/destreza4.png", 821, 104)
+        self.destreza5 = Conteudo("arquivos/destreza5.png", 821, 104)
         self.gggg = Conteudo("arquivos/gggg1.png", 1000, -230)
         self.ggg = Conteudo("arquivos/ggg1.png", 700, -180)
         self.gg = Conteudo("arquivos/gg1.png", 400, -130)
@@ -49,6 +55,21 @@ class Jogo:
         self.aste11 = Conteudo("arquivos/aste11.png", 840, -50)
         self.aste22 = Conteudo("arquivos/aste22.png", 640, -120)
         self.aste33 = Conteudo("arquivos/aste33.png", 440, -190)
+        self.p1 = Conteudo("arquivos/p1.png", 0, -40)
+        self.p2 = Conteudo("arquivos/p2.png", 427, -40)
+        self.p3 = Conteudo("arquivos/p3.png", 854, -40)
+        self.i1 = Conteudo("arquivos/i1.png", 0, -40)
+        self.i2 = Conteudo("arquivos/i2.png", 427, -40)
+        self.i3 = Conteudo("arquivos/i3.png", 854, -40)
+        self.w1 = Conteudo("arquivos/w1.png", 0, -40)
+        self.w2 = Conteudo("arquivos/w2.png", 427, -40)
+        self.w3 = Conteudo("arquivos/w3.png", 854, -40)
+        self.f1 = Conteudo("arquivos/f1.png", 0, -40)
+        self.f2 = Conteudo("arquivos/f2.png", 427, -40)
+        self.f3 = Conteudo("arquivos/f3.png", 854, -40)
+        self.d1 = Conteudo("arquivos/d1.png", 0, -40)
+        self.d2 = Conteudo("arquivos/d2.png", 427, -40)
+        self.d3 = Conteudo("arquivos/d3.png", 854, -40)
         self.boleana_dialogo = False
         self.mudar_cena = False
         self.foi = False
@@ -63,11 +84,13 @@ class Jogo:
         self.contagem_gg = 1
         self.contagem_g = 1
         self.contagem_r = 1
+        self.contagem_barreira = 0
 
     def draw(self, tela):
         self.fundo1.draw(tela)
         self.fundo2.draw(tela)
-        self.tiro.draw(tela)
+        if self.foi:
+            self.tiro.draw(tela)
         self.nave.draw(tela)
         self.comando.draw(tela)
         if self.nave.contagem_discernimento == 5 and self.contagem_paliados == 6:
@@ -108,6 +131,16 @@ class Jogo:
             self.resiliencia4.draw(tela)
         if self.nave.contagem_resiliencia == 5:
             self.resiliencia5.draw(tela)
+        if self.nave.contagem_destreza == 1:
+            self.destreza1.draw(tela)
+        if self.nave.contagem_destreza == 2:
+            self.destreza2.draw(tela)
+        if self.nave.contagem_destreza == 3:
+            self.destreza3.draw(tela)
+        if self.nave.contagem_destreza == 4:
+            self.destreza4.draw(tela)
+        if self.nave.contagem_destreza == 5:
+            self.destreza5.draw(tela)
         if self.comando.personagens.rect[1] == 370:
             self.dialogo1.draw(tela)
         if self.comandoo.personagens.rect[1] == 370:
@@ -132,6 +165,26 @@ class Jogo:
             self.aste33.draw(tela)
         if self.nave.contagem_resiliencia == 6:
             self.comandooo.draw(tela)
+        if self.contagem_dialogo1 == 7:
+            self.p1.draw(tela)
+            self.p2.draw(tela)
+            self.p3.draw(tela)
+        if self.contagem_barreira == 1:
+            self.i1.draw(tela)
+            self.i2.draw(tela)
+            self.i3.draw(tela)
+        if self.contagem_barreira == 2:
+            self.w1.draw(tela)
+            self.w2.draw(tela)
+            self.w3.draw(tela)
+        if self.contagem_barreira == 3:
+            self.f1.draw(tela)
+            self.f2.draw(tela)
+            self.f3.draw(tela)
+        if self.contagem_barreira == 4:
+            self.d1.draw(tela)
+            self.d2.draw(tela)
+            self.d3.draw(tela)
 
     def atualizacoes(self):
         self.movimento_fundo()
@@ -175,6 +228,7 @@ class Jogo:
         self.movimento_terceira()
         self.asteroides()
         self.disparado()
+        self.barreira()
 
     def movimento_primeira(self):
         if self.nave.contagem_enter == 1:
@@ -263,6 +317,18 @@ class Jogo:
             self.resiliencia3.personagens.kill()
         if self.nave.contagem_resiliencia == 5:
             self.resiliencia4.personagens.kill()
+
+    def quantidade_destreza(self):
+        if self.nave.contagem_destreza == 1:
+            self.destreza0.personagens.kill()
+        if self.nave.contagem_destreza == 2:
+            self.destreza1.personagens.kill()
+        if self.nave.contagem_destreza == 3:
+            self.destreza2.personagens.kill()
+        if self.nave.contagem_destreza == 4:
+            self.destreza3.personagens.kill()
+        if self.nave.contagem_destreza == 5:
+            self.destreza4.personagens.kill()
 
     def dialogo(self, event):
         if event.type == pygame.KEYDOWN:
@@ -371,12 +437,64 @@ class Jogo:
             self.tiro.personagens.rect[0] = (self.nave.personagens.rect[0] + 62)
             self.foi = True
         if self.foi:
-            if self.tiro.personagens.rect[1] >= -70:
+            if self.tiro.personagens.rect[1] >= 0:
                 self.tiro.personagens.rect[1] -= 15
-            if self.tiro.personagens.rect[1] == -70:
+            if self.tiro.personagens.rect[1] == 0:
                 self.tiro.personagens.kill()
                 self.foi = False
             if self.tiro.tiro:
                 self.tiro = Tiro("arquivos/x1.png", self.nave.personagens.rect[0] + 62, self.nave.personagens.rect[1] + 30)
+
+    def barreira(self):
+        if self.contagem_dialogo1 == 7:
+            self.p1.personagens.rect[1] += 1
+            self.p2.personagens.rect[1] += 1
+            self.p3.personagens.rect[1] += 1
+        if self.p1.personagens.rect[1] >= 960:
+            self.p1.personagens.kill()
+            self.p2.personagens.kill()
+            self.p3.personagens.kill()
+            self.contagem_barreira = 1
+
+        if self.contagem_barreira == 1:
+            self.i1.personagens.rect[1] += 1
+            self.i2.personagens.rect[1] += 1
+            self.i3.personagens.rect[1] += 1
+        if self.i1.personagens.rect[1] >= 960:
+            self.i1.personagens.kill()
+            self.i2.personagens.kill()
+            self.i3.personagens.kill()
+            self.contagem_barreira = 2
+
+        if self.contagem_barreira == 2:
+            self.w1.personagens.rect[1] += 1
+            self.w2.personagens.rect[1] += 1
+            self.w3.personagens.rect[1] += 1
+        if self.w1.personagens.rect[1] >= 960:
+            self.w1.personagens.kill()
+            self.w2.personagens.kill()
+            self.w3.personagens.kill()
+            self.contagem_barreira = 3
+
+        if self.contagem_barreira == 3:
+            self.f1.personagens.rect[1] += 1
+            self.f2.personagens.rect[1] += 1
+            self.f3.personagens.rect[1] += 1
+        if self.f2.personagens.rect[1] >= 960:
+            self.f1.personagens.kill()
+            self.f2.personagens.kill()
+            self.f3.personagens.kill()
+            self.contagem_barreira = 4
+
+        if self.contagem_barreira == 4:
+            self.d1.personagens.rect[1] += 1
+            self.d2.personagens.rect[1] += 1
+            self.d3.personagens.rect[1] += 1
+        if self.d1.personagens.rect[1] >= 960:
+            self.d1.personagens.kill()
+            self.d2.personagens.kill()
+            self.d3.personagens.kill()
+            self.contagem_barreira += 1
+
 
 

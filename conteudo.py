@@ -34,9 +34,10 @@ class Nave(Conteudo):
 
     def __init__(self, imagem, x, y):
         super().__init__(imagem, x, y)
-        self.contagem_armadura = 5
+        self.contagem_armadura = 10
         self.contagem_discernimento = 0
         self.contagem_resiliencia = 0
+        self.contagem_destreza = 0
         self.contagem_enter = 0
 
     def movimentacao_nave(self, evento):
@@ -149,16 +150,12 @@ class Tiro(Conteudo):
             if evento.key == pygame.K_e:
                 self.tiro = True
                 pygame.mixer.init()
-                pygame.mixer.music.set_volume(0.2)
                 self.som_tiro = pygame.mixer.Sound("arquivos/tiro.ogg")
                 self.som_tiro.play()
+                pygame.mixer.music.set_volume(0.2)
         if evento.type == pygame.KEYUP:
             if evento.key == pygame.K_e:
                 self.tiro = False
-        if self.tiro:
-            print("Tiro",self.tiro)
-        else:
-            pass
 
     def colisao_tiro(self, group, nomee):
         nomee = nomee
