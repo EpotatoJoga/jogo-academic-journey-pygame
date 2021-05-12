@@ -1,51 +1,54 @@
 import pygame
-from objetos import Objetos, Nave, Tiro
+from conteudo import Conteudo, Nave, Tiro
 import random
 
 class Jogo:
 
     def __init__(self):
-        self.fundo1 = Objetos("arquivos/espaco.png", 0, 0)
-        self.fundo2 = Objetos("arquivos/espaco.png", 0, -960)
+        self.fundo1 = Conteudo("arquivos/espaco.png", 0, 0)
+        self.fundo2 = Conteudo("arquivos/espaco.png", 0, -960)
         self.nave = Nave("arquivos/nave1.png",630,750)
-        self.comando = Objetos("arquivos/comando1.png", 40, 960)
-        self.comandoo = Objetos("arquivos/comandoo1.png", 40, 960)
-        self.comandooo = Objetos("arquivos/comandooo1.png", 40, 900)
-        self.dialogo1 = Objetos("arquivos/dialogo1.png", 330, 120)
-        self.dialogo2 = Objetos("arquivos/dialogo4.png", 330, 120)
-        self.dialogo3 = Objetos("arquivos/dialogo6.png", 330,120)
-        self.armadura5 = Objetos("arquivos/armadura5.png", 10, 10)
-        self.armadura4 = Objetos("arquivos/armadura4.png", 10, 10)
-        self.armadura3 = Objetos("arquivos/armadura3.png", 10, 10)
-        self.armadura2 = Objetos("arquivos/armadura2.png", 10, 10)
-        self.armadura1 = Objetos("arquivos/armadura1.png", 10, 10)
-        self.discernimento0 = Objetos("arquivos/disc0.png", 820, 10)
-        self.discernimento1 = Objetos("arquivos/disc1.png", 820, 10)
-        self.discernimento2 = Objetos("arquivos/disc2.png", 820, 10)
-        self.discernimento3 = Objetos("arquivos/disc3.png", 820, 10)
-        self.discernimento4 = Objetos("arquivos/disc4.png", 820, 10)
-        self.discernimento5 = Objetos("arquivos/disc5.png", 820, 10)
-        self.planetainimigo = Objetos("arquivos/pr1.png", 910, -320)
-        self.planetaaliado = Objetos("arquivos/pb1.png", 10, -600)
-        self.resiliencia0 = Objetos("arquivos/resili0.png", 824, 55)
-        self.resiliencia1 = Objetos("arquivos/resili1.png", 824, 55)
-        self.resiliencia2 = Objetos("arquivos/resili2.png", 824, 55)
-        self.resiliencia3 = Objetos("arquivos/resili3.png", 824, 55)
-        self.resiliencia4 = Objetos("arquivos/resili4.png", 824, 55)
-        self.resiliencia5 = Objetos("arquivos/resili5.png",824,55)
-        self.condecoracoes = Objetos("arquivos/condecoracoes.png", 1010, 755)
-        self.condecoracao1 = Objetos("arquivos/condecoracao1.png", 1010, 790)
-        self.condecoracao2 = Objetos("arquivos/condecoracao2.png", 1100, 790)
-        self.destreza0 = Objetos("arquivos/destreza0.png",823,101)
-        self.gggg = Objetos("arquivos/gggg1.png",1000,-230)
-        self.ggg = Objetos("arquivos/ggg1.png", 700, -180)
-        self.gg = Objetos("arquivos/gg1.png", 400, -130)
-        self.g = Objetos("arquivos/g1.png", 100, -100)
-        self.r = Objetos("arquivos/r.png", 600, -50)
+        self.comando = Conteudo("arquivos/comando1.png", 40, 960)
+        self.comandoo = Conteudo("arquivos/comandoo1.png", 40, 960)
+        self.comandooo = Conteudo("arquivos/comandooo1.png", 40, 900)
+        self.dialogo1 = Conteudo("arquivos/dialogo1.png", 330, 120)
+        self.dialogo2 = Conteudo("arquivos/dialogo4.png", 330, 120)
+        self.dialogo3 = Conteudo("arquivos/dialogo6.png", 330, 120)
+        self.armadura5 = Conteudo("arquivos/armadura5.png", 10, 10)
+        self.armadura4 = Conteudo("arquivos/armadura4.png", 10, 10)
+        self.armadura3 = Conteudo("arquivos/armadura3.png", 10, 10)
+        self.armadura2 = Conteudo("arquivos/armadura2.png", 10, 10)
+        self.armadura1 = Conteudo("arquivos/armadura1.png", 10, 10)
+        self.discernimento0 = Conteudo("arquivos/disc0.png", 820, 10)
+        self.discernimento1 = Conteudo("arquivos/disc1.png", 820, 10)
+        self.discernimento2 = Conteudo("arquivos/disc2.png", 820, 10)
+        self.discernimento3 = Conteudo("arquivos/disc3.png", 820, 10)
+        self.discernimento4 = Conteudo("arquivos/disc4.png", 820, 10)
+        self.discernimento5 = Conteudo("arquivos/disc5.png", 820, 10)
+        self.planetainimigo = Conteudo("arquivos/pr1.png", 910, -320)
+        self.planetaaliado = Conteudo("arquivos/pb1.png", 10, -600)
+        self.resiliencia0 = Conteudo("arquivos/resili0.png", 824, 56)
+        self.resiliencia1 = Conteudo("arquivos/resili1.png", 824, 56)
+        self.resiliencia2 = Conteudo("arquivos/resili2.png", 824, 56)
+        self.resiliencia3 = Conteudo("arquivos/resili3.png", 824, 56)
+        self.resiliencia4 = Conteudo("arquivos/resili4.png", 824, 56)
+        self.resiliencia5 = Conteudo("arquivos/resili5.png", 824, 56)
+        self.condecoracoes = Conteudo("arquivos/condecoracoes.png", 1010, 755)
+        self.condecoracao1 = Conteudo("arquivos/condecoracao1.png", 1010, 790)
+        self.condecoracao2 = Conteudo("arquivos/condecoracao2.png", 1100, 790)
+        self.destreza0 = Conteudo("arquivos/destreza0.png", 823, 103)
+        self.gggg = Conteudo("arquivos/gggg1.png", 1000, -230)
+        self.ggg = Conteudo("arquivos/ggg1.png", 700, -180)
+        self.gg = Conteudo("arquivos/gg1.png", 400, -130)
+        self.g = Conteudo("arquivos/g1.png", 100, -100)
+        self.r = Conteudo("arquivos/r.png", 600, -50)
         self.tiro = Tiro("arquivos/x1.png", -10,-10)
-        self.aste1 = Objetos("arquivos/aste1.png",840,-50)
-        self.aste2 = Objetos("arquivos/aste2.png", 640, -120)
-        self.aste3 = Objetos("arquivos/aste3.png", 440, -190)
+        self.aste1 = Conteudo("arquivos/aste1.png", 840, -50)
+        self.aste2 = Conteudo("arquivos/aste2.png", 640, -120)
+        self.aste3 = Conteudo("arquivos/aste3.png", 440, -190)
+        self.aste11 = Conteudo("arquivos/aste11.png", 840, -50)
+        self.aste22 = Conteudo("arquivos/aste22.png", 640, -120)
+        self.aste33 = Conteudo("arquivos/aste33.png", 440, -190)
         self.boleana_dialogo = False
         self.mudar_cena = False
         self.foi = False
@@ -124,6 +127,9 @@ class Jogo:
             self.gg.draw(tela)
             self.g.draw(tela)
             self.r.draw(tela)
+            self.aste11.draw(tela)
+            self.aste22.draw(tela)
+            self.aste33.draw(tela)
         if self.nave.contagem_resiliencia == 6:
             self.comandooo.draw(tela)
 
@@ -137,21 +143,30 @@ class Jogo:
         self.planetas_inimigos()
         self.planetas_aliados()
         self.nave.colisao_planetas(self.planetainimigo.group, "planetainimigos")
-        self.nave.colisao_planetas(self.aste1.group, "aste1.png")
-        self.nave.colisao_planetas(self.aste2.group, "aste2.png")
-        self.nave.colisao_planetas(self.aste3.group, "aste3.png")
+        self.nave.colisao_planetas(self.aste1.group, "aste1")
+        self.nave.colisao_planetas(self.aste2.group, "aste2")
+        self.nave.colisao_planetas(self.aste3.group, "aste3")
         self.nave.colisao_planetas(self.planetaaliado.group, "planetaaliados")
+        self.tiro.colisao_tiro(self.planetainimigo.group, "planetainimigos")
+        self.tiro.colisao_tiro(self.planetaaliado.group, "planetaaliados")
+        self.tiro.colisao_tiroast1(self.aste1.group, "aste1")
+        self.tiro.colisao_tiroast1(self.aste2.group, "aste2")
+        self.tiro.colisao_tiroast1(self.aste3.group, "aste3")
         self.nave.colisao_asteroides(self.gggg.group, "gggg")
         self.nave.colisao_asteroides(self.ggg.group, "ggg")
         self.nave.colisao_asteroides(self.gg.group, "gg")
         self.nave.colisao_asteroides(self.g.group, "g")
         self.nave.colisao_asteroides(self.r.group, "r")
-        self.tiro.colisao_tiro(self.planetainimigo.group, "planetainimigos")
-        self.tiro.colisao_tiro(self.planetaaliado.group, "planetaaliados")
+        self.nave.colisao_asteroides(self.aste11.group, "aste11")
+        self.nave.colisao_asteroides(self.aste22.group, "aste22")
+        self.nave.colisao_asteroides(self.aste33.group, "aste33")
         self.tiro.colisao_tiroo(self.gggg.group, "gggg")
         self.tiro.colisao_tiroo(self.ggg.group, "ggg")
         self.tiro.colisao_tiroo(self.gg.group, "gg")
         self.tiro.colisao_tiroo(self.g.group, "g")
+        self.tiro.colisao_tiroast2(self.aste11.group, "aste11")
+        self.tiro.colisao_tiroast2(self.aste22.group, "aste22")
+        self.tiro.colisao_tiroast2(self.aste33.group, "aste33")
         self.quantidade_armadura()
         self.quantidade_disernimento()
         self.quantidade_resiliencia()
@@ -259,7 +274,7 @@ class Jogo:
         if self.boleana_dialogo:
             self.dialogo1.personagens.kill()
             self.contagem_dialogo1 +=1
-            self.dialogo1 = Objetos("arquivos/dialogo" + str(self.contagem_dialogo1) + ".png", 330, 120)
+            self.dialogo1 = Conteudo("arquivos/dialogo" + str(self.contagem_dialogo1) + ".png", 330, 120)
             #if self.contagem_dialogo1 <= 2:
                 #pygame.mixer.init()
                 #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao2.mpeg")
@@ -278,20 +293,20 @@ class Jogo:
         if self.aste1.personagens.rect[1] >= 960 and self.contagem_pinimigos <= 5:
             self.aste1.personagens.kill()
             if self.contagem_pinimigos <= 4:
-                self.aste1 = Objetos("arquivos/aste1.png", random.randrange(50, 630), -50)
+                self.aste1 = Conteudo("arquivos/aste1.png", random.randrange(50, 1000), -50)
         if self.aste2.personagens.rect[1] >= 960 and self.contagem_pinimigos <= 5:
             self.aste2.personagens.kill()
             if self.contagem_pinimigos <= 4:
-                self.aste2 = Objetos("arquivos/aste2.png", random.randrange(50, 630), -120)
+                self.aste2 = Conteudo("arquivos/aste2.png", random.randrange(50, 1000), -120)
         if self.aste3.personagens.rect[1] >= 960 and self.contagem_pinimigos <= 5:
             self.aste3.personagens.kill()
             if self.contagem_pinimigos <= 4:
-                self.aste3 = Objetos("arquivos/aste3.png", random.randrange(50, 630), -190)
+                self.aste3 = Conteudo("arquivos/aste3.png", random.randrange(50, 1000), -190)
         if self.planetainimigo.personagens.rect[1] >= 960 and self.contagem_pinimigos <= 5:
             self.planetainimigo.personagens.kill()
             self.contagem_pinimigos += 1
             if self.contagem_pinimigos <= 5:
-                self.planetainimigo = Objetos("arquivos/pr" + str(self.contagem_pinimigos) + ".png", random.randrange(50, 630), -320)
+                self.planetainimigo = Conteudo("arquivos/pr" + str(self.contagem_pinimigos) + ".png", random.randrange(50, 900), -320)
 
     def planetas_aliados(self):
         if self.comando.personagens.rect[1] == 960 and self.contagem_paliados <= 5:
@@ -300,7 +315,7 @@ class Jogo:
             self.planetaaliado.personagens.kill()
             self.contagem_paliados += 1
             if self.contagem_paliados <= 5:
-                self.planetaaliado = Objetos("arquivos/pb" + str(self.contagem_paliados) + ".png", random.randrange(50, 630), -440)
+                self.planetaaliado = Conteudo("arquivos/pb" + str(self.contagem_paliados) + ".png", random.randrange(50, 900), -440)
 
     def asteroides(self):
         if self.inicio_asteroides == 1:
@@ -309,31 +324,46 @@ class Jogo:
             self.gg.personagens.rect[1] += 4
             self.g.personagens.rect[1] += 4
             self.r.personagens.rect[1] += 4
+            self.aste11.personagens.rect[1] += 7
+            self.aste22.personagens.rect[1] += 7
+            self.aste33.personagens.rect[1] += 7
+        if self.aste11.personagens.rect[1] >= 960 and self.contagem_gggg <= 4:
+            self.aste11.personagens.kill()
+            if self.contagem_gggg <= 4:
+                self.aste11 = Conteudo("arquivos/aste11.png", random.randrange(50, 1000), -50)
+        if self.aste22.personagens.rect[1] >= 960 and self.contagem_gggg <= 4:
+            self.aste22.personagens.kill()
+            if self.contagem_gggg <= 4:
+                self.aste22 = Conteudo("arquivos/aste22.png", random.randrange(50, 1000), -120)
+        if self.aste33.personagens.rect[1] >= 960 and self.contagem_gggg <= 4:
+            self.aste33.personagens.kill()
+            if self.contagem_gggg <= 4:
+                self.aste33 = Conteudo("arquivos/aste33.png", random.randrange(50, 1000), -190)
         if self.gggg.personagens.rect[1] >= 960 and self.contagem_gggg <= 5:
             self.gggg.personagens.kill()
             self.contagem_gggg += 1
             if self.contagem_gggg <= 5:
-                self.gggg = Objetos("arquivos/gggg" + str(self.contagem_gggg) + ".png", random.randrange(50, 630), -230)
+                self.gggg = Conteudo("arquivos/gggg" + str(self.contagem_gggg) + ".png", random.randrange(50, 1000), -230)
         if self.ggg.personagens.rect[1] >= 960 and self.contagem_ggg <= 5:
             self.ggg.personagens.kill()
             self.contagem_ggg += 1
             if self.contagem_ggg <= 5:
-                self.ggg = Objetos("arquivos/ggg" + str(self.contagem_ggg) + ".png", random.randrange(50, 630), -180)
+                self.ggg = Conteudo("arquivos/ggg" + str(self.contagem_ggg) + ".png", random.randrange(50, 1000), -180)
         if self.gg.personagens.rect[1] >= 960 and self.contagem_gg <= 5:
             self.gg.personagens.kill()
             self.contagem_gg += 1
             if self.contagem_gg <= 5:
-                self.gg = Objetos("arquivos/gg" + str(self.contagem_gg) + ".png", random.randrange(50, 630), -130)
+                self.gg = Conteudo("arquivos/gg" + str(self.contagem_gg) + ".png", random.randrange(50, 1000), -130)
         if self.g.personagens.rect[1] >= 960 and self.contagem_g <= 5:
             self.g.personagens.kill()
             self.contagem_g += 1
             if self.contagem_g <= 5:
-                self.g = Objetos("arquivos/g" + str(self.contagem_g) + ".png", random.randrange(50, 630), -100)
+                self.g = Conteudo("arquivos/g" + str(self.contagem_g) + ".png", random.randrange(50, 1000), -100)
         if self.r.personagens.rect[1] >= 960 and self.contagem_r <= 5:
             self.r.personagens.kill()
             self.contagem_r += 1
             if self.contagem_r <= 5:
-                self.r = Objetos("arquivos/r.png", random.randrange(50, 630), -50)
+                self.r = Conteudo("arquivos/r.png", random.randrange(50, 1000), -50)
 
     def disparado(self):
         if self.tiro.tiro:

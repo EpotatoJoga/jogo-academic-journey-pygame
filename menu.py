@@ -1,10 +1,10 @@
-import pygame
-from objetos import Objetos, Nave
+import pygame                                             # Importando funções do Pygame
+from conteudo import Conteudo                             # Importando funções da Classe Conteudo
 
-class Menu:
+class Menu:                                               # Criação da Classe Menu
 
-    def __init__(self):
-        self.menu = Objetos("arquivos/menu.png", 0, 0)
+    def __init__(self):                                   # Função para inicializar tudo dentro da classe
+        self.menu = Conteudo("arquivos/menu.png", 0, 0)
         self.mudar_cena = False
 
     def draw(self, tela):
