@@ -139,6 +139,20 @@ class Nave(Conteudo):
             self.som = pygame.mixer.Sound("arquivos/ponto.wav")
             self.som.play()
 
+    def colisao_barreira(self, group, nome):
+        nome = nome
+        colisao_barreira = pygame.sprite.spritecollide(self.personagens, group, True)
+        if (nome == "p1" or nome == "p2" or nome == "i1" or nome == "i3" or nome == "w1" or nome == "w2" or nome == "f2" or nome == "f3" or nome == "d1" or nome == "d3") and colisao_barreira:
+            self.contagem_armadura -= 1
+            pygame.mixer.init()
+            self.som = pygame.mixer.Sound("arquivos/explosao.flac")
+            self.som.play()
+        if (nome == "p3" or nome == "i2" or nome == "w3" or nome == "f1" or nome == "d2") and colisao_barreira:
+            self.contagem_destreza += 1
+            pygame.mixer.init()
+            self.som = pygame.mixer.Sound("arquivos/ponto.wav")
+            self.som.play()
+
 class Tiro(Conteudo):
 
     def __init__(self, imagem, x, y):
@@ -222,6 +236,15 @@ class Tiro(Conteudo):
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
         if nomee == "aste33" and colisao_tiro:
+            self.personagens.kill()
+            pygame.mixer.init()
+            self.som = pygame.mixer.Sound("arquivos/explosao.flac")
+            self.som.play()
+
+    def colisao_barreirat(self, group, nome):
+        nome = nome
+        colisao_barreirat = pygame.sprite.spritecollide(self.personagens, group, False)
+        if (nome == "p1" or nome == "p2" or nome == "i1" or nome == "i3" or nome == "w1" or nome == "w2" or nome == "f2" or nome == "f3" or nome == "d1" or nome == "d3" or nome == "p3" or nome == "i2" or nome == "w3" or nome == "f1" or nome == "d2") and colisao_barreirat:
             self.personagens.kill()
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")

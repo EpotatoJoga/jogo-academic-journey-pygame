@@ -48,7 +48,7 @@ class Jogo:
         self.gg = Conteudo("arquivos/gg1.png", 400, -130)
         self.g = Conteudo("arquivos/g1.png", 100, -100)
         self.r = Conteudo("arquivos/r.png", 600, -50)
-        self.tiro = Tiro("arquivos/x1.png", -10,-10)
+        self.tiro = Tiro("arquivos/x1.png", -100,-100)
         self.aste1 = Conteudo("arquivos/aste1.png", 840, -50)
         self.aste2 = Conteudo("arquivos/aste2.png", 640, -120)
         self.aste3 = Conteudo("arquivos/aste3.png", 440, -190)
@@ -89,8 +89,7 @@ class Jogo:
     def draw(self, tela):
         self.fundo1.draw(tela)
         self.fundo2.draw(tela)
-        if self.foi:
-            self.tiro.draw(tela)
+        self.tiro.draw(tela)
         self.nave.draw(tela)
         self.comando.draw(tela)
         if self.nave.contagem_discernimento == 5 and self.contagem_paliados == 6:
@@ -220,9 +219,40 @@ class Jogo:
         self.tiro.colisao_tiroast2(self.aste11.group, "aste11")
         self.tiro.colisao_tiroast2(self.aste22.group, "aste22")
         self.tiro.colisao_tiroast2(self.aste33.group, "aste33")
+        self.nave.colisao_barreira(self.p1.group, "p1")
+        self.nave.colisao_barreira(self.p2.group, "p2")
+        self.nave.colisao_barreira(self.p3.group, "p3")
+        self.nave.colisao_barreira(self.i1.group, "i1")
+        self.nave.colisao_barreira(self.i2.group, "i2")
+        self.nave.colisao_barreira(self.i3.group, "i3")
+        self.nave.colisao_barreira(self.w1.group, "w1")
+        self.nave.colisao_barreira(self.w2.group, "w2")
+        self.nave.colisao_barreira(self.w3.group, "w3")
+        self.nave.colisao_barreira(self.f1.group, "f1")
+        self.nave.colisao_barreira(self.f2.group, "f2")
+        self.nave.colisao_barreira(self.f3.group, "f3")
+        self.nave.colisao_barreira(self.d1.group, "d1")
+        self.nave.colisao_barreira(self.d2.group, "d2")
+        self.nave.colisao_barreira(self.d3.group, "d3")
+        self.tiro.colisao_barreirat(self.p1.group, "p1")
+        self.tiro.colisao_barreirat(self.p2.group, "p2")
+        self.tiro.colisao_barreirat(self.p3.group, "p3")
+        self.tiro.colisao_barreirat(self.i1.group, "i1")
+        self.tiro.colisao_barreirat(self.i2.group, "i2")
+        self.tiro.colisao_barreirat(self.i3.group, "i3")
+        self.tiro.colisao_barreirat(self.w1.group, "w1")
+        self.tiro.colisao_barreirat(self.w2.group, "w2")
+        self.tiro.colisao_barreirat(self.w3.group, "w3")
+        self.tiro.colisao_barreirat(self.f1.group, "f1")
+        self.tiro.colisao_barreirat(self.f2.group, "f2")
+        self.tiro.colisao_barreirat(self.f3.group, "f3")
+        self.tiro.colisao_barreirat(self.d1.group, "d1")
+        self.tiro.colisao_barreirat(self.d2.group, "d2")
+        self.tiro.colisao_barreirat(self.d3.group, "d3")
         self.quantidade_armadura()
         self.quantidade_disernimento()
         self.quantidade_resiliencia()
+        self.quantidade_destreza()
         self.movimento_primeira()
         self.movimento_segunda()
         self.movimento_terceira()
@@ -447,9 +477,9 @@ class Jogo:
 
     def barreira(self):
         if self.contagem_dialogo1 == 7:
-            self.p1.personagens.rect[1] += 1
-            self.p2.personagens.rect[1] += 1
-            self.p3.personagens.rect[1] += 1
+            self.p1.personagens.rect[1] += 2
+            self.p2.personagens.rect[1] += 2
+            self.p3.personagens.rect[1] += 2
         if self.p1.personagens.rect[1] >= 960:
             self.p1.personagens.kill()
             self.p2.personagens.kill()
@@ -457,9 +487,9 @@ class Jogo:
             self.contagem_barreira = 1
 
         if self.contagem_barreira == 1:
-            self.i1.personagens.rect[1] += 1
-            self.i2.personagens.rect[1] += 1
-            self.i3.personagens.rect[1] += 1
+            self.i1.personagens.rect[1] += 2
+            self.i2.personagens.rect[1] += 2
+            self.i3.personagens.rect[1] += 2
         if self.i1.personagens.rect[1] >= 960:
             self.i1.personagens.kill()
             self.i2.personagens.kill()
@@ -467,9 +497,9 @@ class Jogo:
             self.contagem_barreira = 2
 
         if self.contagem_barreira == 2:
-            self.w1.personagens.rect[1] += 1
-            self.w2.personagens.rect[1] += 1
-            self.w3.personagens.rect[1] += 1
+            self.w1.personagens.rect[1] += 2
+            self.w2.personagens.rect[1] += 2
+            self.w3.personagens.rect[1] += 2
         if self.w1.personagens.rect[1] >= 960:
             self.w1.personagens.kill()
             self.w2.personagens.kill()
@@ -477,9 +507,9 @@ class Jogo:
             self.contagem_barreira = 3
 
         if self.contagem_barreira == 3:
-            self.f1.personagens.rect[1] += 1
-            self.f2.personagens.rect[1] += 1
-            self.f3.personagens.rect[1] += 1
+            self.f1.personagens.rect[1] += 2
+            self.f2.personagens.rect[1] += 2
+            self.f3.personagens.rect[1] += 2
         if self.f2.personagens.rect[1] >= 960:
             self.f1.personagens.kill()
             self.f2.personagens.kill()
@@ -487,14 +517,14 @@ class Jogo:
             self.contagem_barreira = 4
 
         if self.contagem_barreira == 4:
-            self.d1.personagens.rect[1] += 1
-            self.d2.personagens.rect[1] += 1
-            self.d3.personagens.rect[1] += 1
+            self.d1.personagens.rect[1] += 2
+            self.d2.personagens.rect[1] += 2
+            self.d3.personagens.rect[1] += 2
         if self.d1.personagens.rect[1] >= 960:
             self.d1.personagens.kill()
             self.d2.personagens.kill()
             self.d3.personagens.kill()
-            self.contagem_barreira += 1
+            self.contagem_barreira = 5
 
 
 

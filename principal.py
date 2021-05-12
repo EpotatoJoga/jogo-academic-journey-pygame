@@ -5,10 +5,10 @@ from jogo import Jogo                                              # Importando 
 class Principal:                                                   # Criação da Classe Principal
 
     def __init__(self, sizex, sizey, titulo):                      # Função de inicialização (com referências)
-        pygame.mixer.init()                                        # Inicializar sons
-        pygame.mixer.music.load("arquivos/tema.ogg")               # Carregar sons
-        pygame.mixer.music.set_volume(0.1)                         # Alterar volume do som
-        pygame.mixer.music.play(-1)                                # Número de repetições
+        #pygame.mixer.init()                                        # Inicializar sons
+        #pygame.mixer.music.load("arquivos/tema.ogg")               # Carregar sons
+        #pygame.mixer.music.set_volume(0.1)                         # Alterar volume do som
+        #pygame.mixer.music.play(-1)                                # Número de repetições
         pygame.display.set_caption(titulo)                         # Gerar o título do jogo
         self.tela = pygame.display.set_mode([sizex, sizey])        # Gerar o tamanho da janela do jogo
         self.fps = pygame.time.Clock()                             # Função do pygame que gera um relogia interno
