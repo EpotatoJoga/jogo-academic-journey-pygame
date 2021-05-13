@@ -315,6 +315,9 @@ class Jogo:
             self.comandooo.personagens.rect[1] -= 3
             if self.comandooo.personagens.rect[1] <= 370:
                 self.comandooo.personagens.rect[1] = 370
+                pygame.mixer.init()
+                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao4.mpeg")
+                self.som_dialogo.play()
                 self.contagem_destre += 1
                 self.contagem_dialogo1 += 1
         if self.contagem_dialogo1 == 7:
@@ -549,10 +552,16 @@ class Jogo:
             self.comandoooo.personagens.rect[1] -= 3
             if self.comandoooo.personagens.rect[1] <= 370:
                 self.comandoooo.personagens.rect[1] = 370
+                pygame.mixer.init()
+                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao5.mpeg")
+                self.som_dialogo.play()
                 self.inicio1 = 1
             if self.contagem_dialogo1 == 8:
                 self.dialogo4.personagens.kill()
             if self.contagem_dialogo1 == 9:
+                pygame.mixer.init()
+                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao6.mpeg")
+                self.som_dialogo.play()
                 self.dialogo5.personagens.kill()
             if self.contagem_dialogo1 == 10:
                 self.comandoooo.personagens.rect[1] += 6

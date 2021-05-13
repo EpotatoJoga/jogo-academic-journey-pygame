@@ -34,7 +34,7 @@ class Nave(Conteudo):
 
     def __init__(self, imagem, x, y):
         super().__init__(imagem, x, y)
-        self.contagem_armadura = 115
+        self.contagem_armadura = 5
         self.contagem_discernimento = 0
         self.contagem_resiliencia = 0
         self.contagem_destreza = 0
