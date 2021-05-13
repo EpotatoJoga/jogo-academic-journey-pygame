@@ -11,9 +11,12 @@ class Jogo:
         self.comando = Conteudo("arquivos/comando1.png", 40, 960)
         self.comandoo = Conteudo("arquivos/comandoo1.png", 40, 960)
         self.comandooo = Conteudo("arquivos/comandooo1.png", 40, 900)
+        self.comandoooo = Conteudo("arquivos/comandoooo1.png", 40, 960)
         self.dialogo1 = Conteudo("arquivos/dialogo1.png", 330, 120)
         self.dialogo2 = Conteudo("arquivos/dialogo4.png", 330, 120)
         self.dialogo3 = Conteudo("arquivos/dialogo6.png", 330, 120)
+        self.dialogo4 = Conteudo("arquivos/dialogo8.png", 330, 120)
+        self.dialogo5 = Conteudo("arquivos/dialogo9.png", 330, 120)
         self.armadura5 = Conteudo("arquivos/armadura5.png", 10, 10)
         self.armadura4 = Conteudo("arquivos/armadura4.png", 10, 10)
         self.armadura3 = Conteudo("arquivos/armadura3.png", 10, 10)
@@ -36,7 +39,7 @@ class Jogo:
         self.condecoracoes = Conteudo("arquivos/condecoracoes.png", 1010, 755)
         self.condecoracao1 = Conteudo("arquivos/condecoracao1.png", 1010, 790)
         self.condecoracao2 = Conteudo("arquivos/condecoracao2.png", 1100, 790)
-        self.condecoracao3 = Conteudo("arquivos/condecoracao3.png", 1100, 790)
+        self.condecoracao3 = Conteudo("arquivos/condecoracao3.png", 1190, 790)
         self.destreza0 = Conteudo("arquivos/destreza0.png", 821, 104)
         self.destreza1 = Conteudo("arquivos/destreza1.png", 821, 104)
         self.destreza2 = Conteudo("arquivos/destreza2.png", 821, 104)
@@ -70,6 +73,7 @@ class Jogo:
         self.d1 = Conteudo("arquivos/d1.png", 0, -40)
         self.d2 = Conteudo("arquivos/d2.png", 427, -40)
         self.d3 = Conteudo("arquivos/d3.png", 854, -40)
+        self.fim = Conteudo("arquivos/fim.png", 0, 0)
         self.boleana_dialogo = False
         self.mudar_cena = False
         self.foi = False
@@ -85,6 +89,9 @@ class Jogo:
         self.contagem_g = 1
         self.contagem_r = 1
         self.contagem_barreira = 0
+        self.inicio = 0
+        self.inicio1 = 0
+        self.final = 0
 
     def draw(self, tela):
         self.fundo1.draw(tela)
@@ -96,6 +103,16 @@ class Jogo:
             self.comandoo.draw(tela)
         if self.nave.contagem_resiliencia == 5 and self.contagem_gggg == 6:
             self.comandooo.draw(tela)
+        if self.inicio == 1:
+            self.comandoooo.draw(tela)
+        if self.comandoooo.personagens.rect[1] == 370:
+            self.dialogo4.draw(tela)
+        if self.inicio1 == 1:
+            self.condecoracao3.draw(tela)
+        if self.contagem_dialogo1 == 9:
+            self.dialogo5.draw(tela)
+        if self.final == 1:
+            self.fim.draw(tela)
         self.armadura5.draw(tela)
         self.armadura4.draw(tela)
         self.armadura3.draw(tela)
@@ -189,8 +206,9 @@ class Jogo:
         self.movimento_fundo()
         self.nave.animacoes("nave", 2, 2)
         self.comando.animacoes("comando", 2, 2)
-        self.comandoo.animacoes("comandoo",2,2)
-        self.comandooo.animacoes("comandooo",2,2)
+        self.comandoo.animacoes("comandoo", 2, 2)
+        self.comandooo.animacoes("comandooo", 2, 2)
+        self.comandoooo.animacoes("comandoooo", 2, 2)
         self.tiro.animacoes("x",2,2)
         self.planetas_inimigos()
         self.planetas_aliados()
@@ -259,6 +277,7 @@ class Jogo:
         self.asteroides()
         self.disparado()
         self.barreira()
+        self.movimento_quarta()
 
     def movimento_primeira(self):
         if self.nave.contagem_enter == 1:
@@ -266,9 +285,9 @@ class Jogo:
             if self.comando.personagens.rect[1] <= 370:
                 self.comando.personagens.rect[1] = 370
                 self.nave.contagem_enter += 1
-                #pygame.mixer.init()
-                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao1.mpeg")
-                #self.som_dialogo.play()
+                pygame.mixer.init()
+                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao1.mpeg")
+                self.som_dialogo.play()
         if self.contagem_dialogo1 == 3:
             self.comando.personagens.rect[1] += 6
             if self.comando.personagens.rect[1] >= 960:
@@ -282,9 +301,9 @@ class Jogo:
                 self.comandoo.personagens.rect[1] = 370
                 self.contagem_resili += 1
                 self.contagem_dialogo1 += 1
-                #pygame.mixer.init()
-                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao3.mpeg")
-                #self.som_dialogo.play()
+                pygame.mixer.init()
+                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao3.mpeg")
+                self.som_dialogo.play()
         if self.contagem_dialogo1 == 5:
             self.comandoo.personagens.rect[1] += 6
             if self.comandoo.personagens.rect[1] >= 960:
@@ -371,10 +390,10 @@ class Jogo:
             self.dialogo1.personagens.kill()
             self.contagem_dialogo1 +=1
             self.dialogo1 = Conteudo("arquivos/dialogo" + str(self.contagem_dialogo1) + ".png", 330, 120)
-            #if self.contagem_dialogo1 <= 2:
-                #pygame.mixer.init()
-                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao2.mpeg")
-                #self.som_dialogo.play()
+            if self.contagem_dialogo1 <= 2:
+                pygame.mixer.init()
+                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao2.mpeg")
+                self.som_dialogo.play()
             print("Nº dialogo:", self.contagem_dialogo1)
         if self.contagem_dialogo1 == 5:
             self.dialogo2.personagens.kill()
@@ -471,60 +490,77 @@ class Jogo:
                 self.tiro.personagens.rect[1] -= 15
             if self.tiro.personagens.rect[1] == 0:
                 self.tiro.personagens.kill()
+                self.tiro.personagens.rect[1] = -200
+                self.tiro.personagens.rect[0] = -200
                 self.foi = False
             if self.tiro.tiro:
                 self.tiro = Tiro("arquivos/x1.png", self.nave.personagens.rect[0] + 62, self.nave.personagens.rect[1] + 30)
 
     def barreira(self):
         if self.contagem_dialogo1 == 7:
-            self.p1.personagens.rect[1] += 2
-            self.p2.personagens.rect[1] += 2
-            self.p3.personagens.rect[1] += 2
+            self.p1.personagens.rect[1] += 3
+            self.p2.personagens.rect[1] += 3
+            self.p3.personagens.rect[1] += 3
         if self.p1.personagens.rect[1] >= 960:
             self.p1.personagens.kill()
             self.p2.personagens.kill()
             self.p3.personagens.kill()
             self.contagem_barreira = 1
-
         if self.contagem_barreira == 1:
-            self.i1.personagens.rect[1] += 2
-            self.i2.personagens.rect[1] += 2
-            self.i3.personagens.rect[1] += 2
+            self.i1.personagens.rect[1] += 3
+            self.i2.personagens.rect[1] += 3
+            self.i3.personagens.rect[1] += 3
         if self.i1.personagens.rect[1] >= 960:
             self.i1.personagens.kill()
             self.i2.personagens.kill()
             self.i3.personagens.kill()
             self.contagem_barreira = 2
-
         if self.contagem_barreira == 2:
-            self.w1.personagens.rect[1] += 2
-            self.w2.personagens.rect[1] += 2
-            self.w3.personagens.rect[1] += 2
+            self.w1.personagens.rect[1] += 3
+            self.w2.personagens.rect[1] += 3
+            self.w3.personagens.rect[1] += 3
         if self.w1.personagens.rect[1] >= 960:
             self.w1.personagens.kill()
             self.w2.personagens.kill()
             self.w3.personagens.kill()
             self.contagem_barreira = 3
-
         if self.contagem_barreira == 3:
-            self.f1.personagens.rect[1] += 2
-            self.f2.personagens.rect[1] += 2
-            self.f3.personagens.rect[1] += 2
+            self.f1.personagens.rect[1] += 3
+            self.f2.personagens.rect[1] += 3
+            self.f3.personagens.rect[1] += 3
         if self.f2.personagens.rect[1] >= 960:
             self.f1.personagens.kill()
             self.f2.personagens.kill()
             self.f3.personagens.kill()
             self.contagem_barreira = 4
-
         if self.contagem_barreira == 4:
-            self.d1.personagens.rect[1] += 2
-            self.d2.personagens.rect[1] += 2
-            self.d3.personagens.rect[1] += 2
+            self.d1.personagens.rect[1] += 3
+            self.d2.personagens.rect[1] += 3
+            self.d3.personagens.rect[1] += 3
         if self.d1.personagens.rect[1] >= 960:
+            self.contagem_barreira = 5
             self.d1.personagens.kill()
             self.d2.personagens.kill()
             self.d3.personagens.kill()
-            self.contagem_barreira = 5
+            self.inicio = 1
+
+    def movimento_quarta(self):
+        if self.inicio == 1:
+            self.comandoooo.personagens.rect[1] -= 3
+            if self.comandoooo.personagens.rect[1] <= 370:
+                self.comandoooo.personagens.rect[1] = 370
+                self.inicio1 = 1
+            if self.contagem_dialogo1 == 8:
+                self.dialogo4.personagens.kill()
+            if self.contagem_dialogo1 == 9:
+                self.dialogo5.personagens.kill()
+            if self.contagem_dialogo1 == 10:
+                self.comandoooo.personagens.rect[1] += 6
+                if self.comandoooo.personagens.rect[1] >= 960:
+                    self.comandoooo.personagens.rect[1] = 960
+                    self.comandoooo.personagens.kill()
+                    self.final = 1
+
 
 
 

@@ -34,7 +34,7 @@ class Nave(Conteudo):
 
     def __init__(self, imagem, x, y):
         super().__init__(imagem, x, y)
-        self.contagem_armadura = 10
+        self.contagem_armadura = 115
         self.contagem_discernimento = 0
         self.contagem_resiliencia = 0
         self.contagem_destreza = 0
@@ -176,24 +176,34 @@ class Tiro(Conteudo):
         colisao_tiro = pygame.sprite.spritecollide(self.personagens, group, False)
         if nomee == "planetainimigos" and colisao_tiro:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
         if nomee == "planetaaliados" and colisao_tiro:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
 
     def colisao_tiroast1(self, group, nomee):
         nomee = nomee
         colisao_tiro = pygame.sprite.spritecollide(self.personagens, group, True)
         if nomee == "aste1" and colisao_tiro:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
         if nomee == "aste2" and colisao_tiro:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
         if nomee == "aste3" and colisao_tiro:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
@@ -203,21 +213,29 @@ class Tiro(Conteudo):
         colisao_tiroo = pygame.sprite.spritecollide(self.personagens, group, True)
         if nomee == "gggg" and colisao_tiroo:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
         if nomee == "ggg" and colisao_tiroo:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
         if nomee == "gg" and colisao_tiroo:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
         if nomee == "g" and colisao_tiroo:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
@@ -227,16 +245,22 @@ class Tiro(Conteudo):
         colisao_tiro = pygame.sprite.spritecollide(self.personagens, group, True)
         if nomee == "aste11" and colisao_tiro:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
         if nomee == "aste22" and colisao_tiro:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
         if nomee == "aste33" and colisao_tiro:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
@@ -246,6 +270,8 @@ class Tiro(Conteudo):
         colisao_barreirat = pygame.sprite.spritecollide(self.personagens, group, False)
         if (nome == "p1" or nome == "p2" or nome == "i1" or nome == "i3" or nome == "w1" or nome == "w2" or nome == "f2" or nome == "f3" or nome == "d1" or nome == "d3" or nome == "p3" or nome == "i2" or nome == "w3" or nome == "f1" or nome == "d2") and colisao_barreirat:
             self.personagens.kill()
+            self.personagens.rect[1] = -200
+            self.personagens.rect[0] = -200
             pygame.mixer.init()
             self.som = pygame.mixer.Sound("arquivos/explosao.flac")
             self.som.play()
