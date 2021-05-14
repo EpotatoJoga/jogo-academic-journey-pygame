@@ -1,9 +1,9 @@
-import pygame                                             # Importando funções do Pygame
-from conteudo import Conteudo                             # Importando funções da Classe Conteudo
+import pygame
+from conteudo import Conteudo
 
-class Menu:                                               # Criação da Classe Menu
+class Menu:
 
-    def __init__(self):                                   # Função para inicializar tudo dentro da classe
+    def __init__(self):
         self.menu = Conteudo("arquivos/menu.png", 0, 0)
         self.mudar_cena = False
 
