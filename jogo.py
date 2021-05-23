@@ -285,9 +285,9 @@ class Jogo:
             if self.comando.personagens.rect[1] <= 370:
                 self.comando.personagens.rect[1] = 370
                 self.nave.contagem_enter += 1
-                pygame.mixer.init()
-                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao1.mpeg")
-                self.som_dialogo.play()
+                #pygame.mixer.init()
+                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao1.mpeg")
+                #self.som_dialogo.play()
         if self.contagem_dialogo1 == 3:
             self.comando.personagens.rect[1] += 6
             if self.comando.personagens.rect[1] >= 960:
@@ -301,9 +301,9 @@ class Jogo:
                 self.comandoo.personagens.rect[1] = 370
                 self.contagem_resili += 1
                 self.contagem_dialogo1 += 1
-                pygame.mixer.init()
-                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao3.mpeg")
-                self.som_dialogo.play()
+                #pygame.mixer.init()
+                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao3.mpeg")
+                #self.som_dialogo.play()
         if self.contagem_dialogo1 == 5:
             self.comandoo.personagens.rect[1] += 6
             if self.comandoo.personagens.rect[1] >= 960:
@@ -315,9 +315,9 @@ class Jogo:
             self.comandooo.personagens.rect[1] -= 3
             if self.comandooo.personagens.rect[1] <= 370:
                 self.comandooo.personagens.rect[1] = 370
-                pygame.mixer.init()
-                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao4.mpeg")
-                self.som_dialogo.play()
+                #pygame.mixer.init()
+                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao4.mpeg")
+                #self.som_dialogo.play()
                 self.contagem_destre += 1
                 self.contagem_dialogo1 += 1
         if self.contagem_dialogo1 == 7:
@@ -393,10 +393,10 @@ class Jogo:
             self.dialogo1.personagens.kill()
             self.contagem_dialogo1 +=1
             self.dialogo1 = Conteudo("arquivos/dialogo" + str(self.contagem_dialogo1) + ".png", 330, 120)
-            if self.contagem_dialogo1 <= 2:
-                pygame.mixer.init()
-                self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao2.mpeg")
-                self.som_dialogo.play()
+            #if self.contagem_dialogo1 <= 2:
+                #pygame.mixer.init()
+                #self.som_dialogo = pygame.mixer.Sound("arquivos/gravacao2.mpeg")
+                #self.som_dialogo.play()
             print("Nº dialogo:", self.contagem_dialogo1)
         if self.contagem_dialogo1 == 5:
             self.dialogo2.personagens.kill()

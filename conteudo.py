@@ -1,27 +1,27 @@
-import pygame                                                        # Importando funções do Pygame
+import pygame
 
-class Conteudo:                                                      # Criação da Classe Conteúdo
+class Conteudo:
 
-    def __init__(self, imagem, x, y):                                # Função para inicializar tudo dentro da classe (com referências)
-        self.group = pygame.sprite.Group()                           # Criação do grupo
-        self.personagens = pygame.sprite.Sprite(self.group)          # Para adicionar  os personagens (imagens) ao grupo
-        self.personagens.image = pygame.image.load(imagem)           # Carregar uma imagem
-        self.personagens.rect = self.personagens.image.get_rect()    # Recebe a variavel de cima para definir posição na tela
-        self.personagens.rect[0] = x                                 # Posição da imagem no eixo X
-        self.personagens.rect[1] = y                                 # Posição da imagem no eixo Y
-        self.movimento_cima = False                                  #
-        self.movimento_baixo = False                                 #
-        self.movimento_esquerda = False                              #
-        self.movimento_direita = False                               # Variáveis boleanas para teclas de movimentação da nave
-        self.teclaenter = False                                      # Variável boleana quando for clicado tecla ENTER
-        self.tiro = False                                            # Variável boleana quando for clicado tecla de atirar
-        self.quadros = 1                                             #
-        self.marcacao = 0                                            # Variáveis para que possa ser geradas animações
+    def __init__(self, imagem, x, y):
+        self.group = pygame.sprite.Group()
+        self.personagens = pygame.sprite.Sprite(self.group)
+        self.personagens.image = pygame.image.load(imagem)
+        self.personagens.rect = self.personagens.image.get_rect()
+        self.personagens.rect[0] = x
+        self.personagens.rect[1] = y
+        self.movimento_cima = False
+        self.movimento_baixo = False
+        self.movimento_esquerda = False
+        self.movimento_direita = False
+        self.teclaenter = False
+        self.tiro = False
+        self.quadros = 1
+        self.marcacao = 0
 
-    def draw(self, janela):                                          # Função para mostrar imagens na tela
-        self.group.draw(janela)                                      # Mostra o grupo de imagem na tela
+    def draw(self, janela):
+        self.group.draw(janela)
 
-    def animacoes(self, imagem, marcacao, quadros):                  # Função para gerar animação
+    def animacoes(self, imagem, marcacao, quadros):
         self.marcacao += 1
         if self.marcacao == marcacao:
             self.marcacao = 0
