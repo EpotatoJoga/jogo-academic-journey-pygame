@@ -51,7 +51,6 @@ class Nave(Conteudo):
             self.personagens.rect[1]-=10
         else:
             self.personagens.rect[1]+=0
-
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_s:
                 self.movimento_baixo = True
@@ -62,7 +61,6 @@ class Nave(Conteudo):
             self.personagens.rect[1]+=10
         else:
             self.personagens.rect[1]+=0
-
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_a:
                 self.movimento_esquerda = True
@@ -73,7 +71,6 @@ class Nave(Conteudo):
             self.personagens.rect[0]-=10
         else:
             self.personagens.rect[0]+=0
-
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_d:
                 self.movimento_direita = True
@@ -84,7 +81,6 @@ class Nave(Conteudo):
             self.personagens.rect[0]+=10
         else:
             self.personagens.rect[0]+=0
-
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_RETURN:
                 self.teclaenter = True
